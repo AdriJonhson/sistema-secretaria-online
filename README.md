@@ -1,6 +1,6 @@
 <h1>Sistema de Secretária Online</h1>
 
-Objetivo: Sistema de Secretário. O Aluno vai conseguir ver seu boletim e outras coisas. O sistema é dívido em níveis de acesso
+Objetivo: Sistema de Secretário. O Aluno vai conseguir ver seu boletim e outras coisas. O sistema é dívidido em níveis de acesso
 cada nível responsávei por algo.
 
 <i>Níveis de acesso:</i>
