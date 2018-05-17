@@ -31,7 +31,7 @@ cada nível responsávei por algo.
     <li>Cadastrar responsáveis dos alunos</li>
 </ul>
 
-<b>Moderados</b>
+<b>Moderadores</b>
 <ul>
     <li>CRUD Alunos</li>
     <li>CRUD Professores</li>
