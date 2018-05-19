@@ -35,7 +35,7 @@ cada nível responsávei por algo.
 <ul>
     <li>CRUD Alunos</li>
     <li>CRUD Professores</li>
-    <li>CRUD Coordenar</li>
+    <li>CRUD Coordenador</li>
     <li>CRUD Responsáveis</li>
     <li>Cadastrar notas dos alunos</li>
     <li>Cadastrar outros moderadores</li>
