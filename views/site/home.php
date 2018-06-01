@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Secretária Online</h1>
+    <a href="login.php">Login</a>
     <a href="sobre.php">Sobre</a>
 </body>
 </html>
