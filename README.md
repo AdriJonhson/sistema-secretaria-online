@@ -3,6 +3,8 @@
 Objetivo: Sistema de Secretário. O Aluno vai conseguir ver seu boletim e outras coisas. O sistema é dívidido em níveis de acesso
 cada nível responsávei por algo.
 
+<a href="https://www.dbdesigner.net/designer/schema/172463">Modelagem do banco de dados</a>
+
 <i>Níveis de acesso:</i>
 
 <b>Aluno</b>
