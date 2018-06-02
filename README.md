@@ -40,3 +40,14 @@ cada nível responsávei por algo.
     <li>Cadastrar notas dos alunos</li>
     <li>Cadastrar outros moderadores</li>
 </ul>
+
+<b>Empresas</b>
+<ul>
+    <li>CRUD</li>
+</ul>
+
+<b>Contatos</b>
+<ul>
+  <li>Listar Contatos e seus devidos comentários</li>
+  <li>Excluir contato</li>
+</ul>
