@@ -33,3 +33,29 @@
 	</style>
 </head>
 <body>
+	<?php include_once '../templates/includes/messages.php'; ?>
+
+	<?php 
+		switch (@$_SESSION['usuario_logado']['nv_acesso']) {
+			case 'admin':
+			include_once '../templates/navbars/navbar_admin.php'; 
+			break;
+
+			case 'aluno':
+			include_once '../templates/navbars/navbar_aluno.php'; 
+			break;
+
+			case 'professor':
+			include_once '../templates/navbars/navbar_professor.php'; 
+			break;
+
+			case 'coordenador':
+			include_once '../templates/navbars/navbar_coordenador.php'; 
+			break;
+
+			case 'responsavel':
+			include_once '../templates/navbars/navbar_responsavel.php'; 
+			break;
+		}
+
+	?>

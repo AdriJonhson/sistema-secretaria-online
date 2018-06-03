@@ -2,7 +2,7 @@
 	<ul>
 		<li><a href="#">Alunos</a></li>
 		<li><a href="#">Responsáveis</a></li>
-		<li><a href="#">Professores</a></li>
+		<li><a href="../professor/ver-professores.php">Professores</a></li>
 		<li><a href="#">Coordenadores</a></li>
 		<li><a href="#">Empresas</a></li>
 		<li><a href="#">Administradores</a></li>

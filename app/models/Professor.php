@@ -28,3 +28,28 @@
 		if($stmt->execute() && $stmt->rowCount() > 0)
 			return true;
 	}
+
+
+	function cadastrar($nome, $materia, $login, $email, $senha, $cpf)
+	{
+
+		//Criptografando a senha
+		$senha = crypt($senha);
+
+		$conn = iniciarConexao();
+		
+		$stmt = $conn->prepare("INSERT INTO professores(nome, materia, login, email, senha, cpf) VALUES(?, ?, ?, ?, ?, ?)");
+
+		$stmt->bindParam(1, $nome);
+		$stmt->bindParam(2, $materia);
+		$stmt->bindParam(3, $login);
+		$stmt->bindParam(4, $email);
+		$stmt->bindParam(5, $senha);
+		$stmt->bindParam(6, $cpf);
+
+		if($stmt->execute())
+			return true;
+		else
+			//print_r($stmt->errorInfo());
+			return false;
+	}
