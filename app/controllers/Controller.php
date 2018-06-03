@@ -7,8 +7,11 @@
 	include_once 'models/Professor.php';
 	include_once 'models/Responsavel.php';
 
-	function verificarLogin($email, $senha)
+	function verificarLogin()
 	{
+		$email = filter_input(INPUT_POST, 'email');
+		$senha = filter_input(INPUT_POST, 'senha');
+
 		if(verificarLoginAdmin($email, $senha) || verificarLoginAluno($email, $senha) || verificarLoginCoordenador($email, $senha) || verificarLoginProfessor($email, $senha) ||
 			verificarLoginResponsavel($email, $senha)){
 

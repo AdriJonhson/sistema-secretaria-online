@@ -4,31 +4,30 @@
 
 	include_once 'controllers/Controller.php';
 	include_once 'controllers/ProfessorController.php';
+	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
 
 	switch ($acao) {
-		case 'login':
-			
-			$email = filter_input(INPUT_POST, 'email');
-			$senha = filter_input(INPUT_POST, 'senha');
-
-			verificarLogin($email, $senha);
-			
+		case 'login':		
+			verificarLogin();	
 		break;
 
 		case 'cadastrar-professor':
-
 			cadastrarProfessor();
+		break;
 
+		case 'editar-professor':
+			updateProfessor();
+		break;
 
+		case 'apagar-professor':
+			deleteProfessor();
 		break;
 
 		case 'sair':
-
 			session_destroy();
 			header("Location: ../views/site/home.php");
-
 		break;
 		
 		default:
