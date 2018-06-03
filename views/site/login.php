@@ -1,4 +1,4 @@
-<?php include_once '../templates/navbars/header.php'; ?>
+<?php include_once '../templates/includes/header.php'; ?>
 
 	<h1>Área de Acesso</h1>
 
@@ -16,4 +16,4 @@
 
 
 
-<?php include_once '../templates/navbars/footer.php'; ?>
+<?php include_once '../templates/includes/footer.php'; ?>
