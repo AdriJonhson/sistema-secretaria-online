@@ -9,10 +9,10 @@
 	switch ($acao) {
 		case 'login':
 			
-			$login = filter_input(INPUT_POST, 'login');
+			$email = filter_input(INPUT_POST, 'email');
 			$senha = filter_input(INPUT_POST, 'senha');
 
-			verificarLogin($login, $senha);
+			verificarLogin($email, $senha);
 			
 		break;
 

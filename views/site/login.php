@@ -7,7 +7,7 @@
 
 	<form method="POST" action="../../app/routes.php">
 		
-		<input type="text" name="login" placeholder="Digite sua matricula" required/>
+		<input type="email" name="email" placeholder="Digite seu email" required/>
 		<input type="password" name="senha" placeholder="Digite sua senha" required/>
 		<input type="hidden" name="acao" value="login"/>
 		<button type="submit">Entrar</button>

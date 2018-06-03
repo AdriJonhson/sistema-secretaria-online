@@ -2,12 +2,12 @@
 
 	include_once 'connection/Connection.php';
 
-	function verificarLoginProfessor($login, $senha)
+	function verificarLoginProfessor($email, $senha)
 	{
 
 		$conn = iniciarConexao();
-		$stmt = $conn->prepare("SELECT * FROM professores WHERE login = ? AND senha = ?");
-		$stmt->bindParam(1, $login);
+		$stmt = $conn->prepare("SELECT * FROM professores WHERE email = ? AND senha = ?");
+		$stmt->bindParam(1, $email);
 		$stmt->bindParam(2, $senha);
 
 		if($stmt->execute() && $stmt->rowCount() > 0){
@@ -16,4 +16,15 @@
 			return true;
 		}
 		
+	}
+
+	function verificarEmailProfessor($email)
+	{
+
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM professores WHERE email = ?");
+		$stmt->bindParam(1, $email);
+
+		if($stmt->execute() && $stmt->rowCount() > 0)
+			return true;
 	}
