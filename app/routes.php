@@ -2,12 +2,7 @@
 
 	session_start();
 
-	include_once 'controllers/AdminController.php';
-	include_once 'controllers/AlunoController.php';
-	include_once 'controllers/CoordenadorController.php';
-	include_once 'controllers/ProfessorController.php';
-	include_once 'controllers/ResponsavelController.php';
-
+	include_once 'controllers/Controller.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
 
@@ -17,18 +12,8 @@
 			$login = filter_input(INPUT_POST, 'login');
 			$senha = filter_input(INPUT_POST, 'senha');
 
-			if(verificarLoginAdmin($login, $senha) || verificarLoginAluno($login, $senha) || verificarLoginCoordenador($login, $senha) || verificarLoginProfessor($login, $senha) ||
-				verificarLoginResponsavel($login, $senha)){
-
-				header("Location: ../views/site/dashboard.php");
-
-			}else{
-
-				$_SESSION['msg_erro'] = "Login ou Senha inválidos";
-
-				header("Location: ../views/site/login.php");
-			}
-
+			verificarLogin($login, $senha);
+			
 		break;
 
 		case 'sair':
