@@ -12,18 +12,14 @@
         header("Location: ../../index.php");
         
     $id = filter_input(INPUT_GET, 'id');
-    $title = "";
 
     if(isset($id)){
         $atividade = buscarAtividade($id);
-        $title = "Atividade";
-    }else{
-        $title = "Nova Atividade";
     }
 
 ?>
 
-<h1><?= $title ?></h1>
+<h1><?= isset($id) ? "Atividade - ".$_SESSION['usuario_logado']['dados']->materia : "Nova Atividade" ?></h1>
 
 
 <form action="../../app/routes.php" method="POST">

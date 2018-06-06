@@ -10,13 +10,13 @@
     if(!isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado']['nv_acesso'] != "professor")	
 		header("Location: ../../index.php");
 
-    $atividades = listarAtividadesAtivas($_SESSION['usuario_logado']['dados']->id);
+    $atividades = listarAtividades($_SESSION['usuario_logado']['dados']->id);
         
 ?>
 
-<h1>Atividades Em Andamento</h1>
+<h1>Diário</h1>
 
-<a href="diario-atividades.php">Ver Diário</a>
+<a href="ver-atividades.php">Voltar</a>
 
 <p></p>
 
@@ -26,6 +26,7 @@
         <tr>
             <th>Curso</th>
             <th>Data da Entrega</th>
+            <th>Situação</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -39,13 +40,9 @@
                 <tr>
                     <td align="center"><?= traduzirId($atividade['id_curso']) ?></td>
                     <td align="center"><?= tratarData($atividade['data_entrega']) ?></td>
-                    <td align="center"><a href="#" onclick="encerrarAtividade()">Encerrar</a> | <a href="ver-cadastrar-atividade.php?id=<?= $atividade['id'] ?>">Ver Mais</a></td>
+                    <td align="center"><?= $atividade['status'] ?></td>
+                    <td align="center"><a href="ver-cadastrar-atividade.php?id=<?= $atividade['id'] ?>">Ver Mais</a></td>
                 </tr>
-
-                <form method="POST" action="../../app/routes.php" id="formEncerrar">
-                    <input type="hidden" name="acao" value="encerrar-atividade">
-                    <input type="hidden" name="id" value="<?= $atividade['id'] ?>">
-                </form>
 
         <?php } }else{  ?>
             
@@ -56,28 +53,8 @@
          <?php } ?>   
     </tbody>
 
-    <tfoot>
-        <tr>
-            <td align="center" colspan="3"><a href="ver-cadastrar-atividade.php">Lançar Atividade</a></td>
-        </tr>
-    </tfoot>
-
 
 </table>
 
-
-<script type="text/javascript">
-    
-    function encerrarAtividade()
-    {
-        var go = confirm("Deseja realmente encerrar essa atividade?");
-
-        if(go){ 
-            document.getElementById("formEncerrar").submit();
-        }
-    }
-
-
-</script>
 
 <?php include_once '../templates/includes/footer.php'; ?>

@@ -2,7 +2,7 @@
 
 	function iniciarConexao()
 	{
-	    $dsn  = 'mysql:host=localhost;dbname=db_secretaria';
+	    $dsn  = 'mysql:host=localhost;dbname=db_secretaria;charset=utf8';
 	    $user = 'root';
 	    $pass = '';
 

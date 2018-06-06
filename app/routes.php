@@ -26,6 +26,10 @@
 			updateProfessor();
 		break;
 
+		case 'encerrar-atividade':
+			encerrarAtividade();
+		break;
+
 		case 'apagar-professor':
 			deleteProfessor();
 		break;

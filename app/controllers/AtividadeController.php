@@ -13,13 +13,32 @@
 		if(salvar($id_professor, $id_curso, $conteudo, $dt_entrega)){
 
             $_SESSION['msg_success'] = "Atividade lançado com sucesso";
-			header("Location:../views/site/dashboard.php");
+			header("Location:../views/professor/ver-atividades.php");
 
         }else{
 
             $_SESSION['msg_error'] = "Erro ao lançar à atividade";
-            header("Location:../views/site/dashboard.php");
+            header("Location:../views/professor/ver-atividades.php");
             
+        }
+
+    }
+
+    function encerrarAtividade()
+    {
+
+        $id_atividade = filter_input(INPUT_POST, 'id');
+
+        if(encerrar($id_atividade)){
+
+            $_SESSION['msg_success'] = "Atividade Encerrada!";
+            header("Location:../views/professor/ver-atividades.php");
+
+        }else{
+
+            $_SESSION['msg_error'] = "Erro ao encerrar à atividade! Tente Novamente!";
+            header("Location:../views/professor/ver-atividades.php");
+
         }
 
     }

@@ -13,14 +13,25 @@
             return true;
         else
             return false;
+    }
+  
+    function listarAtividadesAtivas($id_professor)
+    {
+        $conn = iniciarConexao();
+        $stmt = $conn->prepare("SELECT * FROM atividades WHERE id_professor = ? AND status = 'Andamento'");
+        $stmt->bindParam(1, $id_professor);
+        
+        if($stmt->execute()){
+            $atividades = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
+        return $atividades;
     }
 
-        
     function listarAtividades($id_professor)
     {
         $conn = iniciarConexao();
-        $stmt = $conn->prepare("SELECT * FROM atividades WHERE id_professor = ? AND status = 0");
+        $stmt = $conn->prepare("SELECT * FROM atividades WHERE id_professor = ?");
         $stmt->bindParam(1, $id_professor);
         
         if($stmt->execute()){
@@ -44,17 +55,16 @@
         return $atividade;
     }
 
-    function encerrarAtividade($id_atividade)
+    function encerrar($id_atividade)
     {
 
         $conn = iniciarConexao();
-        $stmt = $conn->prepare("UPDATE atividades SET status = '1' WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE atividades SET status = 'Concluída' WHERE id = ?");
         $stmt->bindParam(1, $id_atividade);
 
-        if($stmt->execute()){
+        if($stmt->execute())
             return true;
-        }else{
+        else
             return false;
-        }
 
     }

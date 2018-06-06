@@ -1,57 +1,45 @@
--- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: 05-Jun-2018 às 00:52
--- Versão do servidor: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+Source Server         : localhost_3306
+Source Server Version : 100131
+Source Host           : localhost:3306
+Source Database       : db_secretaria
 
+Target Server Type    : MYSQL
+Target Server Version : 100131
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+Date: 2018-06-06 20:00:08
+*/
 
---
--- Database: `db_secretaria`
---
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `administradores`
---
-
+-- ----------------------------
+-- Table structure for administradores
+-- ----------------------------
+DROP TABLE IF EXISTS `administradores`;
 CREATE TABLE `administradores` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(150) NOT NULL,
   `login` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `senha` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `senha` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `administradores`
---
+-- ----------------------------
+-- Records of administradores
+-- ----------------------------
+INSERT INTO `administradores` VALUES ('1', 'Administrador', 'admin', 'admin@gmail.com', '$1$dUzG7yvr$xClZ8z96.xcvCQky0Bw/f/');
+INSERT INTO `administradores` VALUES ('2', 'teste', 'teste', 'teste@gmail.com', '$1$QSxWm6DX$302/Lix4g3eXTSEHX.m/u/');
 
-INSERT INTO `administradores` (`id`, `nome`, `login`, `email`, `senha`) VALUES
-(1, 'Administrador', 'admin', 'admin@gmail.com', '$1$dUzG7yvr$xClZ8z96.xcvCQky0Bw/f/'),
-(2, 'teste', 'teste', 'teste@gmail.com', '$1$QSxWm6DX$302/Lix4g3eXTSEHX.m/u/');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `alunos`
---
-
+-- ----------------------------
+-- Table structure for alunos
+-- ----------------------------
+DROP TABLE IF EXISTS `alunos`;
 CREATE TABLE `alunos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_curso` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
   `matricula` varchar(20) NOT NULL,
@@ -73,92 +61,99 @@ CREATE TABLE `alunos` (
   `comentario` text,
   `login` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `senha` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `matricula` (`matricula`),
+  KEY `alunos_fk0` (`id_curso`),
+  CONSTRAINT `alunos_fk0` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `alunos`
---
+-- ----------------------------
+-- Records of alunos
+-- ----------------------------
+INSERT INTO `alunos` VALUES ('1', '1', 'Josefredo José', '1234567', '1', '1985-11-01', 'Brasileiro', '20.055.903-5', '704.136.430-50', '123456', '72926-068', '', 'Integral', '2018-06-01', 'Universidade Infantil', null, null, null, null, null, 'aluno', 'jojo@gmail.com', '$1$cJhduJBo$z4GFDvboTw0Ngs/2rw5F0/');
 
-INSERT INTO `alunos` (`id`, `id_curso`, `nome`, `matricula`, `num_chamada`, `data_nascimento`, `naturalidade`, `rg`, `cpf`, `nis`, `cep`, `complemento_endereco`, `turno`, `data_cadastro`, `escola_origem`, `opcao_medicamento`, `medicamento`, `telefone`, `celular`, `comentario`, `login`, `email`, `senha`) VALUES
-(1, 1, 'Josefredo José', '1234567', 1, '1985-11-01', 'Brasileiro', '20.055.903-5', '704.136.430-50', '123456', '72926-068', '', 'Integral', '2018-06-01', 'Universidade Infantil', NULL, NULL, NULL, NULL, NULL, 'aluno', 'jojo@gmail.com', '$1$cJhduJBo$z4GFDvboTw0Ngs/2rw5F0/');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `atividades`
---
-
+-- ----------------------------
+-- Table structure for atividades
+-- ----------------------------
+DROP TABLE IF EXISTS `atividades`;
 CREATE TABLE `atividades` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_professor` int(11) NOT NULL,
   `id_curso` int(11) NOT NULL,
   `data_entrega` date NOT NULL,
-  `conteudo` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `conteudo` text NOT NULL,
+  `status` enum('Concluída','Andamento') NOT NULL DEFAULT 'Andamento',
+  PRIMARY KEY (`id`),
+  KEY `id_professor` (`id_professor`),
+  KEY `id_curso` (`id_curso`),
+  CONSTRAINT `id_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `id_professor` FOREIGN KEY (`id_professor`) REFERENCES `professores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of atividades
+-- ----------------------------
+INSERT INTO `atividades` VALUES ('2', '4', '1', '2018-06-07', 'Trabalho de Geometria - Trigonometria ', 'Concluída');
+INSERT INTO `atividades` VALUES ('3', '4', '2', '2018-06-22', 'Atividade de Produtos NotÃ¡veis', 'Concluída');
 
---
--- Estrutura da tabela `comentarios`
---
-
+-- ----------------------------
+-- Table structure for comentarios
+-- ----------------------------
+DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `texto` text NOT NULL
+  `texto` text NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of comentarios
+-- ----------------------------
 
---
--- Estrutura da tabela `coordenadores`
---
-
+-- ----------------------------
+-- Table structure for coordenadores
+-- ----------------------------
+DROP TABLE IF EXISTS `coordenadores`;
 CREATE TABLE `coordenadores` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   `login` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(100) NOT NULL,
-  `cpf` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cpf` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `coordenadores`
---
+-- ----------------------------
+-- Records of coordenadores
+-- ----------------------------
+INSERT INTO `coordenadores` VALUES ('1', 'Pedro José', 'coordenador', 'pedrojose@gmail.com', '$1$cJhduJBo$z4GFDvboTw0Ngs/2rw5F0/', '451.096.570-25');
 
-INSERT INTO `coordenadores` (`id`, `nome`, `login`, `email`, `senha`, `cpf`) VALUES
-(1, 'Pedro José', 'coordenador', 'pedrojose@gmail.com', '$1$cJhduJBo$z4GFDvboTw0Ngs/2rw5F0/', '451.096.570-25');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `cursos`
---
-
+-- ----------------------------
+-- Table structure for cursos
+-- ----------------------------
+DROP TABLE IF EXISTS `cursos`;
 CREATE TABLE `cursos` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
---
--- Extraindo dados da tabela `cursos`
---
+-- ----------------------------
+-- Records of cursos
+-- ----------------------------
+INSERT INTO `cursos` VALUES ('1', 'Informática 3');
+INSERT INTO `cursos` VALUES ('2', 'Enfermagem 3');
 
-INSERT INTO `cursos` (`id`, `nome`) VALUES
-(1, 'Informática 3'),
-(2, 'Enfermagem 3');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `empresas`
---
-
+-- ----------------------------
+-- Table structure for empresas
+-- ----------------------------
+DROP TABLE IF EXISTS `empresas`;
 CREATE TABLE `empresas` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `intituica` varchar(200) NOT NULL,
   `razao_social` varchar(200) NOT NULL,
   `nome_fantasia` varchar(200) NOT NULL,
@@ -173,86 +168,103 @@ CREATE TABLE `empresas` (
   `escola_beneficiada` varchar(200) NOT NULL,
   `municipio_escola` varchar(200) NOT NULL,
   `id_representante` int(200) NOT NULL,
-  `id_endereco` int(11) NOT NULL
+  `id_endereco` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `empresas_fk0` (`id_representante`),
+  KEY `empresas_fk1` (`id_endereco`),
+  CONSTRAINT `empresas_fk0` FOREIGN KEY (`id_representante`) REFERENCES `representantes` (`id`),
+  CONSTRAINT `empresas_fk1` FOREIGN KEY (`id_endereco`) REFERENCES `endereco_empresa` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of empresas
+-- ----------------------------
 
---
--- Estrutura da tabela `endereco_empresa`
---
-
+-- ----------------------------
+-- Table structure for endereco_empresa
+-- ----------------------------
+DROP TABLE IF EXISTS `endereco_empresa`;
 CREATE TABLE `endereco_empresa` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cep` varchar(20) NOT NULL,
   `endereco` varchar(100) NOT NULL,
   `complemento` varchar(100) NOT NULL,
   `municipio` varchar(100) NOT NULL,
   `bairro` varchar(100) NOT NULL,
-  `numero` varchar(10) NOT NULL
+  `numero` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of endereco_empresa
+-- ----------------------------
 
---
--- Estrutura da tabela `notas`
---
-
+-- ----------------------------
+-- Table structure for notas
+-- ----------------------------
+DROP TABLE IF EXISTS `notas`;
 CREATE TABLE `notas` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_curso` int(11) NOT NULL,
   `media_primeiro_semestre` double(3,1) NOT NULL,
   `media_segundo_semestre` double(3,1) NOT NULL,
   `ano_competencial` int(11) NOT NULL,
-  `id_aluno` int(11) NOT NULL
+  `id_aluno` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `notas_fk0` (`id_curso`),
+  KEY `notas_fk1` (`id_aluno`),
+  CONSTRAINT `notas_fk0` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`),
+  CONSTRAINT `notas_fk1` FOREIGN KEY (`id_aluno`) REFERENCES `alunos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of notas
+-- ----------------------------
 
---
--- Estrutura da tabela `professores`
---
-
+-- ----------------------------
+-- Table structure for professores
+-- ----------------------------
+DROP TABLE IF EXISTS `professores`;
 CREATE TABLE `professores` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(150) NOT NULL,
   `materia` varchar(50) NOT NULL,
   `login` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(100) NOT NULL,
-  `cpf` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cpf` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `professores`
---
+-- ----------------------------
+-- Records of professores
+-- ----------------------------
+INSERT INTO `professores` VALUES ('4', 'Roberto', 'MatemÃ¡tica', 'beto', 'roberto@gmail.com', '$1$owAcKCM1$zEHXIIR9cRPVUA5k3BXtm.', '154.279.180-43');
+INSERT INTO `professores` VALUES ('5', 'Marcelo', 'QuÃ­mica', 'marcello', 'marcelo@gmail.com', '$1$QSxWm6DX$302/Lix4g3eXTSEHX.m/u/', '425.123.940-77');
 
-INSERT INTO `professores` (`id`, `nome`, `materia`, `login`, `email`, `senha`, `cpf`) VALUES
-(4, 'Roberto', 'MatemÃ¡tica', 'beto', 'roberto@gmail.com', '$1$owAcKCM1$zEHXIIR9cRPVUA5k3BXtm.', '154.279.180-43'),
-(5, 'Marcelo', 'QuÃ­mica', 'marcello', 'marcelo@gmail.com', '$1$QSxWm6DX$302/Lix4g3eXTSEHX.m/u/', '425.123.940-77');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `representantes`
---
-
+-- ----------------------------
+-- Table structure for representantes
+-- ----------------------------
+DROP TABLE IF EXISTS `representantes`;
 CREATE TABLE `representantes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `cpf` varchar(20) NOT NULL,
-  `rg` varchar(20) NOT NULL
+  `rg` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of representantes
+-- ----------------------------
 
---
--- Estrutura da tabela `responsaveis`
---
-
+-- ----------------------------
+-- Table structure for responsaveis
+-- ----------------------------
+DROP TABLE IF EXISTS `responsaveis`;
 CREATE TABLE `responsaveis` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_pai` varchar(100) DEFAULT NULL,
   `rg_pai` varchar(20) DEFAULT NULL,
   `cpf_pai` varchar(20) DEFAULT NULL,
@@ -261,248 +273,31 @@ CREATE TABLE `responsaveis` (
   `cpf_mae` varchar(20) DEFAULT NULL,
   `login` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `senha` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `responsaveis`
---
+-- ----------------------------
+-- Records of responsaveis
+-- ----------------------------
+INSERT INTO `responsaveis` VALUES ('1', 'José', '17.034.620-1', '833.264.950-13', 'Josefina', '17.034.620-1', '720.494.960-95', 'responsavel', 'jojofina@gmail.com', '$1$cJhduJBo$z4GFDvboTw0Ngs/2rw5F0/');
 
-INSERT INTO `responsaveis` (`id`, `nome_pai`, `rg_pai`, `cpf_pai`, `nome_mae`, `rg_mae`, `cpf_mae`, `login`, `email`, `senha`) VALUES
-(1, 'José', '17.034.620-1', '833.264.950-13', 'Josefina', '17.034.620-1', '720.494.960-95', 'responsavel', 'jojofina@gmail.com', '$1$cJhduJBo$z4GFDvboTw0Ngs/2rw5F0/');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `responsaveis_alunos`
---
-
+-- ----------------------------
+-- Table structure for responsaveis_alunos
+-- ----------------------------
+DROP TABLE IF EXISTS `responsaveis_alunos`;
 CREATE TABLE `responsaveis_alunos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_responsavel` int(11) NOT NULL,
-  `id_aluno` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_aluno` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `responsaveis_alunos_fk0` (`id_responsavel`),
+  KEY `responsaveis_alunos_fk1` (`id_aluno`),
+  CONSTRAINT `responsaveis_alunos_fk0` FOREIGN KEY (`id_responsavel`) REFERENCES `responsaveis` (`id`),
+  CONSTRAINT `responsaveis_alunos_fk1` FOREIGN KEY (`id_aluno`) REFERENCES `alunos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `responsaveis_alunos`
---
-
-INSERT INTO `responsaveis_alunos` (`id`, `id_responsavel`, `id_aluno`) VALUES
-(1, 1, 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `administradores`
---
-ALTER TABLE `administradores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `alunos`
---
-ALTER TABLE `alunos`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `matricula` (`matricula`),
-  ADD KEY `alunos_fk0` (`id_curso`);
-
---
--- Indexes for table `atividades`
---
-ALTER TABLE `atividades`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_professor` (`id_professor`),
-  ADD KEY `id_curso` (`id_curso`);
-
---
--- Indexes for table `comentarios`
---
-ALTER TABLE `comentarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `coordenadores`
---
-ALTER TABLE `coordenadores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cursos`
---
-ALTER TABLE `cursos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `empresas`
---
-ALTER TABLE `empresas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empresas_fk0` (`id_representante`),
-  ADD KEY `empresas_fk1` (`id_endereco`);
-
---
--- Indexes for table `endereco_empresa`
---
-ALTER TABLE `endereco_empresa`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `notas`
---
-ALTER TABLE `notas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `notas_fk0` (`id_curso`),
-  ADD KEY `notas_fk1` (`id_aluno`);
-
---
--- Indexes for table `professores`
---
-ALTER TABLE `professores`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `representantes`
---
-ALTER TABLE `representantes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `responsaveis`
---
-ALTER TABLE `responsaveis`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `responsaveis_alunos`
---
-ALTER TABLE `responsaveis_alunos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `responsaveis_alunos_fk0` (`id_responsavel`),
-  ADD KEY `responsaveis_alunos_fk1` (`id_aluno`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `administradores`
---
-ALTER TABLE `administradores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `alunos`
---
-ALTER TABLE `alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `atividades`
---
-ALTER TABLE `atividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `comentarios`
---
-ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `coordenadores`
---
-ALTER TABLE `coordenadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `cursos`
---
-ALTER TABLE `cursos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `empresas`
---
-ALTER TABLE `empresas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `endereco_empresa`
---
-ALTER TABLE `endereco_empresa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `notas`
---
-ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `professores`
---
-ALTER TABLE `professores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `representantes`
---
-ALTER TABLE `representantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `responsaveis`
---
-ALTER TABLE `responsaveis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `responsaveis_alunos`
---
-ALTER TABLE `responsaveis_alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `alunos`
---
-ALTER TABLE `alunos`
-  ADD CONSTRAINT `alunos_fk0` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`);
-
---
--- Limitadores para a tabela `atividades`
---
-ALTER TABLE `atividades`
-  ADD CONSTRAINT `id_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_professor` FOREIGN KEY (`id_professor`) REFERENCES `professores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `empresas`
---
-ALTER TABLE `empresas`
-  ADD CONSTRAINT `empresas_fk0` FOREIGN KEY (`id_representante`) REFERENCES `representantes` (`id`),
-  ADD CONSTRAINT `empresas_fk1` FOREIGN KEY (`id_endereco`) REFERENCES `endereco_empresa` (`id`);
-
---
--- Limitadores para a tabela `notas`
---
-ALTER TABLE `notas`
-  ADD CONSTRAINT `notas_fk0` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`),
-  ADD CONSTRAINT `notas_fk1` FOREIGN KEY (`id_aluno`) REFERENCES `alunos` (`id`);
-
---
--- Limitadores para a tabela `responsaveis_alunos`
---
-ALTER TABLE `responsaveis_alunos`
-  ADD CONSTRAINT `responsaveis_alunos_fk0` FOREIGN KEY (`id_responsavel`) REFERENCES `responsaveis` (`id`),
-  ADD CONSTRAINT `responsaveis_alunos_fk1` FOREIGN KEY (`id_aluno`) REFERENCES `alunos` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Records of responsaveis_alunos
+-- ----------------------------
+INSERT INTO `responsaveis_alunos` VALUES ('1', '1', '1');
