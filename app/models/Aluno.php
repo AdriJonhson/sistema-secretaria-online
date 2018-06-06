@@ -1,7 +1,5 @@
 <?php 
 
-	include_once 'connection/Connection.php';
-
 	function verificarLoginAluno($email, $senha)
 	{
 

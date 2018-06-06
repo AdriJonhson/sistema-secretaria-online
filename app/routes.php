@@ -4,6 +4,7 @@
 
 	include_once 'controllers/Controller.php';
 	include_once 'controllers/ProfessorController.php';
+	include_once 'controllers/AtividadeController.php';
 	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
@@ -15,6 +16,10 @@
 
 		case 'cadastrar-professor':
 			cadastrarProfessor();
+		break;
+
+		case 'cadastrar-atividade':
+			cadastrarAtividade();
 		break;
 
 		case 'editar-professor':
