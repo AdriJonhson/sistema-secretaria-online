@@ -31,21 +31,19 @@
 		<?php foreach($professores as $professor){ ?>
 				
 			<tr>
-				<td><?= $professor['id']?></td>
-				<td><?= $professor['nome']?></td>
-				<td><?= $professor['materia']?></td>
-				<td><?= $professor['email']?></td>
-				<td>
+				<td align="center"><?= $professor['id']?></td>
+				<td align="center"><?= $professor['nome']?></td>
+				<td align="center"><?= $professor['materia']?></td>
+				<td align="center"><?= $professor['email']?></td>
+				<td align="center">
 					<a href="editar-cadastrar-professor.php?id=<?= $professor['id']?>">Editar</a> | 
+					<a href="#" onclick="confirmDelete()">Excluir</a>
 					<form method="POST" action="../../app/routes.php" id="formDelete">
 						<input type="hidden" name="acao" value="apagar-professor">
 						<input type="hidden" name="id" value="<?= $professor['id']?>">
-						<button type="submit" onclick="return confirm('Deseja realmente apagar os dados desse professor?')">Excluir</button>
 					</form>
 				</td>
 			</tr>
-
-			
 
 		<?php } ?>
 	</tbody>
@@ -63,7 +61,7 @@
 	
 	function confirmDelete(){
 
-		var msg = confirm("Realmente deseja apgar os dados desse professor?");
+		var msg = confirm("Realmente deseja apagar os dados desse professor?");
 
 		if(msg){
 			document.getElementById("formDelete").submit();

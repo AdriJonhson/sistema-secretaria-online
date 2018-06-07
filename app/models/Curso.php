@@ -4,7 +4,7 @@
     {
 
         $conn = iniciarConexao();
-        $stmt = $conn->prepare("SELECT * FROM cursos");
+        $stmt = $conn->prepare("SELECT * FROM cursos ORDER BY nome ASC");
         
         if($stmt->execute() && $stmt->rowCount() > 0){
             $cursos= $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -29,3 +29,16 @@
 		if($stmt->execute() && $stmt->rowCount() > 0)
 			return true;
 	}
+
+	function listarAlunos()
+	{
+
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM alunos");
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return $alunos;
+	}

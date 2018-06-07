@@ -1,6 +1,6 @@
 <nav id="menu">
 	<ul>
-		<li><a href="#">Alunos</a></li>
+		<li><a href="../aluno/ver-alunos.php">Alunos</a></li>
 		<li><a href="#">Responsáveis</a></li>
 		<li><a href="../professor/ver-professores.php">Professores</a></li>
 		<li><a href="#">Coordenadores</a></li>
