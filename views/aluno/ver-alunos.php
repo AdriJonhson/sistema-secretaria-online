@@ -7,7 +7,9 @@
 	//Não permite que usário entrem na página sem fazer login
 	include_once '../templates/includes/header.php'; 
 
-	verificarAcesso();
+	$permissoes = ['admin', 'professor', 'coordenador'];
+
+	verificarAcesso($permissoes);
 
 	$alunos = listarAlunos();
 	$cursos = listarCursos();
@@ -59,9 +61,10 @@
 				<td align="center"><?= $aluno['turno'] ?></td>
 				<td align="center" width="30%">
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Ver Mais</a> |" : "" ?>
-					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Editar</a> |" : "" ?>
-					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Excluir</a> |" : "" ?>
 					<a href="#">Adicionar Nota</a> 
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "| <a href='#'>Boletim</a> |" : "" ?>
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Editar</a> |" : "" ?>
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Excluir</a>" : "" ?>
 				</td>
 			</tr>
 
@@ -76,7 +79,10 @@
 
 	<tfoot>
 		<tr>
-			<td align="center" colspan="5"><a href="#">Novo Aluno</a></td>
+			<?php if($_SESSION['usuario_logado']['nv_acesso'] == "admin" || $_SESSION['usuario_logado']['nv_acesso'] == "coordenador"){ ?>
+				<td align="center" colspan="5"><a href="#">Novo Aluno</a></td>
+				
+			<?php } ?>
 		</tr>
 	</tfoot>
 

@@ -14,9 +14,8 @@
         
     }
 
-    function verificarAcesso()
+    function verificarAcesso($permissoes)
     {
-    	$permissoes = ['professor', 'admin', 'coordenador'];
 
 		if(!isset($_SESSION['usuario_logado']))	
 			header("Location: ../../index.php");

@@ -9,8 +9,11 @@
 	}
 
 	//Não permite que usário entrem na página sem fazer login
-	include_once '../templates/includes/header.php'; 
-	verificarAcesso();
+	include_once '../templates/includes/header.php';
+
+	$permissoes = ['admin', 'professor', 'coordenador'];
+
+	verificarAcesso($permissoes);
 ?>
 
 

@@ -1,6 +1,6 @@
 <nav id="menu">
 	<ul>
-		<li><a href="../alunos/ver-alunos.php">Adicionar Notas</a></li>
+		<li><a href="../aluno/ver-alunos.php">Adicionar Notas</a></li>
 		<li><a href="../professor/ver-atividades.php">Atividades</a></li>
 		<li><a href="#" onclick="document.formSair.submit()">Sair</a></li>
 	</ul>

@@ -7,8 +7,8 @@
 	include_once '../templates/includes/header.php'; 
     
     //Verifica se o usuário está logado e se possui o nível de acesso necessário
-    if(!isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado']['nv_acesso'] != "professor")	
-		header("Location: ../../index.php");
+    $permissoes = ['admin', 'professor', 'coordenador'];
+    verificarAcesso($permissoes);
 
     $atividades = listarAtividades($_SESSION['usuario_logado']['dados']->id);
         

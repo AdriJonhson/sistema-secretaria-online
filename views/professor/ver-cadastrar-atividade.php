@@ -2,14 +2,15 @@
 	include_once '../../app/connection/Connection.php';
 	include_once '../../app/models/Curso.php';
 	include_once '../../app/models/Atividade.php';
+    include_once '../../app/funcoes.php';
     
     $cursos = listarCursos();
 
 	//Não permite que usário entrem na página sem fazer login
 	include_once '../templates/includes/header.php'; 
 	
-	if(!isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado']['nv_acesso'] != "professor")	
-        header("Location: ../../index.php");
+    $permissoes = ['admin', 'professor', 'coordenador'];
+    verificarAcesso($permissoes);
         
     $id = filter_input(INPUT_GET, 'id');
 
