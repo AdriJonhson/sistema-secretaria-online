@@ -80,7 +80,7 @@
 	<tfoot>
 		<tr>
 			<?php if($_SESSION['usuario_logado']['nv_acesso'] == "admin" || $_SESSION['usuario_logado']['nv_acesso'] == "coordenador"){ ?>
-				<td align="center" colspan="5"><a href="#">Novo Aluno</a></td>
+				<td align="center" colspan="5"><a href="novo-editar-aluno.php">Novo Aluno</a></td>
 				
 			<?php } ?>
 		</tr>

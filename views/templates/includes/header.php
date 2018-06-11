@@ -31,6 +31,7 @@
 			border-bottom:3px solid #EA0000;
 		}
 	</style>
+	
 </head>
 <body>
 	<?php include_once '../templates/includes/messages.php'; ?>
