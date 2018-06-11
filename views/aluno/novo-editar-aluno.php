@@ -95,10 +95,7 @@ $cursos = listarCursos();
 		<input type="text" name="origem" required placeholder="Escola de Origem"> <br><br>
 
 		<label>Matrícula</label>
-		<input type="text" name="matricula" readonly> <br><br>
-
-		<label>Número Chamada</label>
-		<input type="number" name="num_chamada" readonly> <br><br>
+		<input type="text" name="matricula" id="matricula" readonly> <br><br>
 
 		<label>Curso</label>
 		<select name="curso" required>
@@ -140,4 +137,10 @@ $cursos = listarCursos();
 <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../assets/js/viacep.js"></script>
 
+<script>
+	
+	
+
+
+</script>
 <?php include_once '../templates/includes/footer.php'; ?>
