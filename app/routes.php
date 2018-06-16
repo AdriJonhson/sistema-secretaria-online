@@ -5,6 +5,7 @@
 	include_once 'controllers/Controller.php';
 	include_once 'controllers/ProfessorController.php';
 	include_once 'controllers/AtividadeController.php';
+	include_once 'controllers/AlunoController.php';
 	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
@@ -32,6 +33,18 @@
 
 		case 'apagar-professor':
 			deleteProfessor();
+		break;
+
+		case 'cadastrar-aluno':
+			cadastrarAluno();
+		break;
+
+		case 'editar-aluno':
+			editarAluno();
+		break;
+
+		case 'apagar-aluno':
+			excluirAluno();
 		break;
 
 		case 'sair':

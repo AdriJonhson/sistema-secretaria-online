@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100131
 File Encoding         : 65001
 
-Date: 2018-06-06 20:00:08
+Date: 2018-06-11 20:16:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,13 +89,11 @@ CREATE TABLE `atividades` (
   KEY `id_curso` (`id_curso`),
   CONSTRAINT `id_curso` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `id_professor` FOREIGN KEY (`id_professor`) REFERENCES `professores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of atividades
 -- ----------------------------
-INSERT INTO `atividades` VALUES ('2', '4', '1', '2018-06-07', 'Trabalho de Geometria - Trigonometria ', 'Concluída');
-INSERT INTO `atividades` VALUES ('3', '4', '2', '2018-06-22', 'Atividade de Produtos NotÃ¡veis', 'Concluída');
 
 -- ----------------------------
 -- Table structure for comentarios
@@ -239,8 +237,7 @@ CREATE TABLE `professores` (
 -- ----------------------------
 -- Records of professores
 -- ----------------------------
-INSERT INTO `professores` VALUES ('4', 'Roberto', 'MatemÃ¡tica', 'beto', 'roberto@gmail.com', '$1$owAcKCM1$zEHXIIR9cRPVUA5k3BXtm.', '154.279.180-43');
-INSERT INTO `professores` VALUES ('5', 'Marcelo', 'QuÃ­mica', 'marcello', 'marcelo@gmail.com', '$1$QSxWm6DX$302/Lix4g3eXTSEHX.m/u/', '425.123.940-77');
+INSERT INTO `professores` VALUES ('5', 'Marcelo', 'Química', 'marcello', 'marcelo@gmail.com', '$1$QSxWm6DX$302/Lix4g3eXTSEHX.m/u/', '425.123.940-77');
 
 -- ----------------------------
 -- Table structure for representantes

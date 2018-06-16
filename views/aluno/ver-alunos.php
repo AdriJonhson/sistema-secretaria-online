@@ -60,11 +60,18 @@
 				<td align="center"><?= traduzirId($aluno['id_curso']) ?></td>
 				<td align="center"><?= $aluno['turno'] ?></td>
 				<td align="center" width="30%">
-					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Ver Mais</a> |" : "" ?>
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='dados-aluno.php?id=".$aluno['id']."'>Ver Mais</a> |" : "" ?>
 					<a href="#">Adicionar Nota</a> 
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "| <a href='#'>Boletim</a> |" : "" ?>
-					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Editar</a> |" : "" ?>
-					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='#'>Excluir</a>" : "" ?>
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='novo-editar-aluno.php?id=".$aluno['id']."'>Editar</a> |" : "" ?>
+
+					<?php if($_SESSION['usuario_logado']['nv_acesso'] != "professor"){ ?>
+						<a href="#" onclick="confirmDelete()">Excluir</a>
+						<form method="POST" action="../../app/routes.php" id="formDelete">
+							<input type="hidden" name="acao" value="apagar-aluno">
+							<input type="hidden" name="id" value="<?= $aluno['id'] ?>">
+						</form>
+					<?php } ?>
 				</td>
 			</tr>
 
@@ -88,6 +95,17 @@
 
 
 </table>
+
+<script type="text/javascript">
+	function confirmDelete(){
+
+		var msg = confirm("Realmente deseja apagar os dados desse aluno?");
+
+		if(msg){
+			document.getElementById("formDelete").submit();
+		}
+	}
+</script>
 
 
 <?php include_once '../templates/includes/footer.php'; ?>

@@ -13,3 +13,8 @@
 	        echo 'Erro: '.$ex->getMessage();
 	    }
 	}
+
+
+	function exibirErro($stmt){
+		print_r($stmt->errorInfo());	
+	}
