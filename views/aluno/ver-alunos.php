@@ -82,10 +82,10 @@
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='novo-editar-aluno.php?id=".$aluno['id']."'>Editar</a> |" : "" ?>
 
 					<?php if($_SESSION['usuario_logado']['nv_acesso'] != "professor"){ ?>
-						<a href="#" onclick="confirmDelete()">Excluir</a>
 						<form method="POST" action="../../app/routes.php" id="formDelete">
 							<input type="hidden" name="acao" value="apagar-aluno">
 							<input type="hidden" name="id" value="<?= $aluno['id'] ?>">
+							<input type="submit" value="Excluir">
 						</form>
 					<?php } ?>
 				</td>

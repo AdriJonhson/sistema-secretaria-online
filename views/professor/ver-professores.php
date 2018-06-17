@@ -38,10 +38,10 @@
 				<td align="center"><?= $professor['email']?></td>
 				<td align="center">
 					<a href="editar-cadastrar-professor.php?id=<?= $professor['id']?>">Editar</a> | 
-					<a href="#" onclick="confirmDelete()">Excluir</a>
 					<form method="POST" action="../../app/routes.php" id="formDelete">
 						<input type="hidden" name="acao" value="apagar-professor">
 						<input type="hidden" name="id" value="<?= $professor['id']?>">
+						<input type="submit" value="Excluir">
 					</form>
 				</td>
 			</tr>
