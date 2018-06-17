@@ -7,6 +7,7 @@
 	include_once 'controllers/AtividadeController.php';
 	include_once 'controllers/AlunoController.php';
 	include_once 'controllers/NotaController.php';
+	include_once 'controllers/CoordenadorController.php';
 	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
@@ -50,6 +51,18 @@
 
 		case 'cadastrar-nota':
 			cadastrarMedia();
+		break;
+
+		case 'cadastrar-coordenador':
+			cadastrarCoordenador();
+		break;
+
+		case 'editar-coordenador':
+			editarCoordenador();
+		break;
+
+		case 'excluir-coordenador':
+			excluirCoordenador();
 		break;
 
 		case 'sair':

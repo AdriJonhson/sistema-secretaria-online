@@ -36,7 +36,7 @@
 		if(verificarEmail($email)){
 
 			$_SESSION['msg_erro'] = "Esse E-Mail já está em uso!";
-			header("Location:../views/aluno/novo-editar-professor.php");
+			header("Location:../views/aluno/novo-editar-aluno.php");
 
 		}else{
 			$insert = cadastrar_aluno($curso, $nome, $matricula, $num, $data_nascimento, $naturalidade, $rg, $cpf, $nis, $cep, $complemento, $turno, $data_cadastro, $escola_origem, $opc_medicamento,$medicamento, $telefone, $celular, $observacao, $login, $email, $senha);
