@@ -152,3 +152,36 @@
 		else
 			return false;
 	}
+
+	function buscarAlunoNome($nome)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM alunos WHERE nome LIKE ?");
+
+		$nome = '%'.$nome.'%';
+
+		$stmt->bindParam(1, $nome);
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return $alunos;
+	}
+
+	function buscarAlunoCurso($nome, $curso)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM alunos WHERE id_curso = ? AND nome LIKE ?");
+
+		$nome = '%'.$nome.'%';
+
+		$stmt->bindParam(1, $curso);
+		$stmt->bindParam(2, $nome);
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return $alunos;
+	}

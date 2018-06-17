@@ -11,24 +11,40 @@
 
 	verificarAcesso($permissoes);
 
-	$alunos = listarAlunos();
+	
 	$cursos = listarCursos();
+
+	if(isset($_POST['btnProcurar'])){
+		
+		$nome = filter_input(INPUT_POST, 'nome');
+		$curso = filter_input(INPUT_POST, 'curso');
+
+		if($curso != 0){
+			@$alunos = buscarAlunoCurso($nome, $curso);
+		}else{
+			@$alunos = buscarAlunoNome($nome);
+		}
+
+	}else{
+		$alunos = listarAlunos();
+	}
+
 
 ?>
 
 <h1>Alunos</h1>
 
-<form method="POST" action="../../app/routes.php">
+<form method="POST" action="">
 	<input type="text" name="nome" placeholder="Nome Do Aluno" size="50px">
 
 	<select name="curso">
-		<option value="#">Selecione um Curso(Não é obrigatório)</option>
+		<option value="">Selecione um Curso(Não é obrigatório)</option>
 		<?php foreach($cursos as $curso){ ?>
 			<option value="<?= $curso['id'] ?>"><?= $curso['nome'] ?></option>
 		<?php } ?>
 	</select>
 
-	<button type="submit">Procurar</button>
+	<button type="submit" name="btnProcurar">Procurar</button>
 </form>
 
 <p></p>
