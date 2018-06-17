@@ -25,8 +25,11 @@
 			@$alunos = buscarAlunoNome($nome);
 		}
 
+		$msg = "Nenhum Aluno Encontrado";
+
 	}else{
 		$alunos = listarAlunos();
+		$msg = "Nenhum Aluno Cadastrado";
 	}
 
 
@@ -77,7 +80,10 @@
 				<td align="center"><?= $aluno['turno'] ?></td>
 				<td align="center" width="30%">
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='dados-aluno.php?id=".$aluno['id']."'>Ver Mais</a> |" : "" ?>
-					<a href="#">Adicionar Nota</a> 
+
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] == "professor") ? "<a href='../professor/cadastrar-notas.php?id=".$aluno['id']."'>Adicionar Nota</a> " : "" ?>
+					
+
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "| <a href='#'>Boletim</a> |" : "" ?>
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='novo-editar-aluno.php?id=".$aluno['id']."'>Editar</a> |" : "" ?>
 
@@ -94,7 +100,7 @@
 		<?php } }else{ ?>
 
 			<tr>
-				<th colspan="5">Nenhum Aluno Cadastrado</th>
+				<th colspan="5"><?= $msg ?></th>
 			</tr>
 
 		<?php } ?>
@@ -111,17 +117,5 @@
 
 
 </table>
-
-<script type="text/javascript">
-	function confirmDelete(){
-
-		var msg = confirm("Realmente deseja apagar os dados desse aluno?");
-
-		if(msg){
-			document.getElementById("formDelete").submit();
-		}
-	}
-</script>
-
 
 <?php include_once '../templates/includes/footer.php'; ?>

@@ -6,6 +6,7 @@
 	include_once 'controllers/ProfessorController.php';
 	include_once 'controllers/AtividadeController.php';
 	include_once 'controllers/AlunoController.php';
+	include_once 'controllers/NotaController.php';
 	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
@@ -45,6 +46,10 @@
 
 		case 'apagar-aluno':
 			excluirAluno();
+		break;
+
+		case 'cadastrar-nota':
+			cadastrarMedia();
 		break;
 
 		case 'sair':
