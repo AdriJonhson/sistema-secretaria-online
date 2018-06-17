@@ -82,6 +82,8 @@
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='dados-aluno.php?id=".$aluno['id']."'>Ver Mais</a> |" : "" ?>
 
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] == "professor") ? "<a href='../professor/cadastrar-notas.php?id=".$aluno['id']."'>Adicionar Nota</a> " : "" ?>
+
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] == "professor") ? "| <a href='../aluno/ver-nota.php?id=".$aluno['id']."'>Ver Notas</a> " : "" ?>
 					
 
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "| <a href='#'>Boletim</a> |" : "" ?>

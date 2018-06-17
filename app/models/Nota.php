@@ -49,3 +49,17 @@
 		else
 			return false;
 	}
+
+	function buscar_medias($id_aluno, $id_professor)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM notas WHERE id_aluno = ? AND id_professor = ?");
+		$stmt->bindParam(1, $id_aluno);
+		$stmt->bindParam(2, $id_professor);
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$notas = $stmt->fetch(PDO::FETCH_OBJ);
+		}
+			
+		return $notas;
+	}		
