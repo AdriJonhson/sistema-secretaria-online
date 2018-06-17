@@ -62,4 +62,17 @@
 		}
 			
 		return $notas;
+	}
+
+	function gerar_boletim($id_aluno)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM notas WHERE id_aluno = ?");
+		$stmt->bindParam(1, $id_aluno);
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$notas = $stmt->fetchAll(PDO::FETCH_OBJ);
+		}
+			
+		return $notas;
 	}		

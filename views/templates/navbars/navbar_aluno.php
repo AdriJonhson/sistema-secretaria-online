@@ -1,6 +1,6 @@
 <nav id="menu">
 	<ul>
-		<li><a href="#">Ver Boletim</a></li>
+		<li><a href="../aluno/boletim.php">Ver Boletim</a></li>
 		<li><a href="#">Ver Atividades</a></li>
 		<li><a href="#" onclick="document.formSair.submit()">Sair</a></li>
 	</ul>

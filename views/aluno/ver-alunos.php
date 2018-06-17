@@ -86,7 +86,8 @@
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] == "professor") ? "| <a href='../aluno/ver-nota.php?id=".$aluno['id']."'>Ver Notas</a> " : "" ?>
 					
 
-					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "| <a href='#'>Boletim</a> |" : "" ?>
+					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? " <a href='boletim.php?id=".$aluno['id']."'>Boletim</a>" : "" ?>
+
 					<?= ($_SESSION['usuario_logado']['nv_acesso'] != "professor") ? "<a href='novo-editar-aluno.php?id=".$aluno['id']."'>Editar</a> |" : "" ?>
 
 					<?php if($_SESSION['usuario_logado']['nv_acesso'] != "professor"){ ?>
