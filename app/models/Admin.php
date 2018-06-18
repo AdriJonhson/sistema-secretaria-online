@@ -32,3 +32,29 @@
 			return true;
 	}
 	
+	function listarAdmins()
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM administradores");
+
+		if($stmt->execute()){
+			$admins = $stmt->fetchAll(PDO::FETCH_OBJ);
+		}
+
+		return $admins;
+	}
+
+	function cadastrar_admin($nome, $email, $login, $senha)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("INSERT INTO administradores(nome, email, login, senha) VALUES(?, ?, ?, ?)");
+		$stmt->bindParam(1, $nome);
+		$stmt->bindParam(2, $email);
+		$stmt->bindParam(3, $login);
+		$stmt->bindParam(4, $senha);
+
+		if($stmt->execute())
+			return true;
+		else
+			return false;
+	}

@@ -7,6 +7,7 @@
 	include_once 'controllers/AtividadeController.php';
 	include_once 'controllers/AlunoController.php';
 	include_once 'controllers/NotaController.php';
+	include_once 'controllers/AdminController.php';
 	include_once 'controllers/CoordenadorController.php';
 	include_once 'connection/Connection.php';
 
@@ -63,6 +64,10 @@
 
 		case 'excluir-coordenador':
 			excluirCoordenador();
+		break;
+
+		case 'cadastrar-admin':
+			cadastrarAdmin();
 		break;
 
 		case 'sair':

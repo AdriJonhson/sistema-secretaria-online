@@ -5,7 +5,7 @@
 		<li><a href="../professor/ver-professores.php">Professores</a></li>
 		<li><a href="../coordenador/ver-coordenadores.php">Coordenadores</a></li>
 		<li><a href="#">Empresas</a></li>
-		<li><a href="#">Administradores</a></li>
+		<li><a href="../moderador/ver-moderadores.php">Administradores</a></li>
 		<li><a href="#">Contatos</a></li>
 		<li><a href="#" onclick="document.formSair.submit()">Sair</a></li>
 	</ul>
