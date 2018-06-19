@@ -24,7 +24,7 @@
 	<br><br>
 
 	<label>CPF</label>
-	<input type="text" name="cpf" required value="<?= isset($coordenador) ? $coordenador->cpf : "" ?>">
+	<input type="text" name="cpf" class="cpf" required value="<?= isset($coordenador) ? $coordenador->cpf : "" ?>">
 	<br><br>
 
 	<label>E-Mail</label>
@@ -51,5 +51,15 @@
 
 	<button><?= isset($coordenador) ? "Salvar Alterações" : "Cadastrar" ?></button>
 </form>
+
+
+<script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../assets/js/maskedinput.js"></script>
+
+<script type="text/javascript">
+	$(function($){
+		$(".cpf").mask("999.999.999-99");
+	});
+</script>
 
 <?php include_once '../templates/includes/footer.php'; ?>

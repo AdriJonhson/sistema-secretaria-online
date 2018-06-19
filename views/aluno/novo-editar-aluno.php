@@ -32,10 +32,10 @@ if(isset($id_aluno)){
 		<input type="text" name="nome" placeholder="Nome do Aluno" value="<?= isset($id_aluno) ? $aluno->nome : '' ?>" required /> <br><br>
 
 		<label>RG</label>
-		<input type="text" name="rg" placeholder="RG" value="<?= isset($id_aluno) ? $aluno->rg : '' ?>"/> <br><br>
+		<input type="text" name="rg" id="rg" placeholder="RG" value="<?= isset($id_aluno) ? $aluno->rg : '' ?>"/> <br><br>
 
 		<label>CPF</label>
-		<input type="text" name="cpf" placeholder="CPF" value="<?= isset($id_aluno) ? $aluno->cpf : '' ?>"/> <br><br>
+		<input type="text" name="cpf" id="cpf" placeholder="CPF" value="<?= isset($id_aluno) ? $aluno->cpf : '' ?>"/> <br><br>
 
 		<label>NIS</label>
 		<input type="text" name="nis" placeholder="NIS" value="<?= isset($id_aluno) ? $aluno->nis : '' ?>"/> <br><br>
@@ -171,6 +171,7 @@ if(isset($id_aluno)){
 
 <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../assets/js/viacep.js"></script>
+<script type="text/javascript" src="../assets/js/maskedinput.js"></script>
 
 <script>
 	
@@ -205,6 +206,12 @@ if(isset($id_aluno)){
 	function habilitarCampo(){
 		document.getElementById("opc_medic").disabled = false;
 	}
+
+	$(function($){
+		$("#cpf").mask("999.999.999-99");
+		$("#rg").mask("99.999.999-9");
+		$("#cep").mask("99999-999");
+	});
 
 </script>
 <?php include_once '../templates/includes/footer.php'; ?>

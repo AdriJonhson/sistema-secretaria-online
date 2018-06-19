@@ -21,27 +21,27 @@
 <form method="POST" action="../../app/routes.php">
 	
 	<label>Nome Mãe</label>
-	<input type="text" name="nome_mae" value="<?= isset($responsavel) ? $responsavel->nome_mae : "" ?>">
+	<input type="text" name="nome_mae"  value="<?= isset($responsavel) ? $responsavel->nome_mae : "" ?>">
 	<br><br>
 
 	<label>CPF Mãe</label>
-	<input type="text" name="cpf_mae" value="<?= isset($responsavel) ? $responsavel->cpf_mae : "" ?>">
+	<input type="text" name="cpf_mae" class="cpf" value="<?= isset($responsavel) ? $responsavel->cpf_mae : "" ?>">
 	<br><br>
 
 	<label>RG Mãe</label>
-	<input type="text" name="rg_mae" value="<?= isset($responsavel) ? $responsavel->rg_mae : "" ?>">
+	<input type="text" name="rg_mae" class="rg" value="<?= isset($responsavel) ? $responsavel->rg_mae : "" ?>">
 	<br><br>
 	
 	<label>Nome Pai</label>
-	<input type="text" name="nome_pai" value="<?= isset($responsavel) ? $responsavel->nome_pai : "" ?>">
+	<input type="text" name="nome_pai"  value="<?= isset($responsavel) ? $responsavel->nome_pai : "" ?>">
 	<br><br>
 
 	<label>CPF Pai</label>
-	<input type="text" name="cpf_pai" value="<?= isset($responsavel) ? $responsavel->cpf_pai : "" ?>">
+	<input type="text" name="cpf_pai" class="cpf" value="<?= isset($responsavel) ? $responsavel->cpf_pai : "" ?>">
 	<br><br>
 
 	<label>RG Pai</label>
-	<input type="text" name="rg_pai" value="<?= isset($responsavel) ? $responsavel->rg_pai : "" ?>">
+	<input type="text" name="rg_pai" class="rg" value="<?= isset($responsavel) ? $responsavel->rg_pai : "" ?>">
 	<br><br>
 
 	<b><i>Dados Usados Para Acessar a Secretária Online</i></b>
@@ -70,5 +70,15 @@
 	<button type="submit"><?= isset($responsavel) ? "Salvar Alterações" : "Cadastrar" ?></button>
 
 </form>
+
+<script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../assets/js/maskedinput.js"></script>
+
+<script type="text/javascript">
+	$(function($){
+		$(".cpf").mask("999.999.999-99");
+		$(".rg").mask("99.999.999-9");
+	});
+</script>
 
 <?php include_once '../templates/includes/footer.php'; ?>
