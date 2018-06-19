@@ -83,6 +83,10 @@
 			excluirResponsavel();
 		break;
 
+		case 'associar-dependente':
+			adicionarDependente();
+		break;
+
 		case 'sair':
 			session_destroy();
 			header("Location: ../views/site/home.php");

@@ -185,3 +185,30 @@
 
 		return $alunos;
 	}
+
+
+	function listarAlunosSemResponsavel()
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM alunos WHERE id NOT IN(SELECT id_aluno FROM responsaveis_alunos)");
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return $alunos;
+	}
+
+	function buscarAlunoCpf($cpf)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM alunos WHERE cpf = ? AND id NOT IN(SELECT id_aluno FROM responsaveis_alunos)");
+
+		$stmt->bindParam(1, $cpf);
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$aluno = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return $aluno;
+	}

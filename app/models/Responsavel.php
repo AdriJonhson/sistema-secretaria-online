@@ -110,3 +110,16 @@
 
 		return $responsavel;
 	}
+
+	function adicionar_dependente($id_responsavel, $id_aluno)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("INSERT INTO responsaveis_alunos(id_responsavel, id_aluno) VALUES(?,?)");
+		$stmt->bindParam(1, $id_responsavel);
+		$stmt->bindParam(2, $id_aluno);
+
+		if($stmt->execute())
+			return true;
+		else
+			return false;
+	}

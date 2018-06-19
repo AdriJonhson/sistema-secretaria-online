@@ -106,3 +106,17 @@
 			header("Location:../views/responsavel/ver-responsaveis.php");
 		}
 	}
+
+	function adicionarDependente()
+	{
+		$id_aluno = filter_input(INPUT_POST, 'id_aluno');
+		$id_responsavel = filter_input(INPUT_POST, 'id_responsavel');
+
+		if(adicionar_dependente($id_responsavel, $id_aluno)){
+			$_SESSION['msg_success'] = "Dependente Associado";
+			header("Location:../views/responsavel/ver-responsaveis.php");
+		}else{
+			$_SESSION['msg_erro'] = "Erro ao associar o aluno";
+			header("Location:../views/responsavel/ver-responsaveis.php");
+		}
+	}
