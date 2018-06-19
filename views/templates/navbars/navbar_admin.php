@@ -1,7 +1,7 @@
 <nav id="menu">
 	<ul>
 		<li><a href="../aluno/ver-alunos.php">Alunos</a></li>
-		<li><a href="#">Responsáveis</a></li>
+		<li><a href="../responsavel/ver-responsaveis.php">Responsáveis</a></li>
 		<li><a href="../professor/ver-professores.php">Professores</a></li>
 		<li><a href="../coordenador/ver-coordenadores.php">Coordenadores</a></li>
 		<li><a href="#">Empresas</a></li>

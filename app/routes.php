@@ -9,6 +9,7 @@
 	include_once 'controllers/NotaController.php';
 	include_once 'controllers/AdminController.php';
 	include_once 'controllers/CoordenadorController.php';
+	include_once 'controllers/ResponsavelController.php';
 	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
@@ -68,6 +69,18 @@
 
 		case 'cadastrar-admin':
 			cadastrarAdmin();
+		break;
+
+		case 'cadastrar-responsavel':
+			cadastrarResponsavel();
+		break;
+
+		case 'editar-responsavel':
+			editarResponsavel();
+		break;
+
+		case 'excluir-responsavel':
+			excluirResponsavel();
 		break;
 
 		case 'sair':

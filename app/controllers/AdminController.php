@@ -1,7 +1,7 @@
 <?php 
 
 	include_once 'Controller.php';
-	include_once '../models/Admin.php';
+	include_once 'models/Admin.php';
 
 	function cadastrarAdmin()
 	{
