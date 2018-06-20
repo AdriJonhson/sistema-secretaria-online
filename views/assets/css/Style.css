@@ -1,0 +1,129 @@
+#menu ul {
+  padding:0px;
+  /*margin:0px;*/
+  /*background-color:#EDEDED;*/
+  list-style:none;
+}
+
+#menu ul li { display: inline; }
+
+#menu ul li a {
+  padding: 2px 10px;
+  /*display: inline-block;*/
+
+  /* visual do link */
+  /*background-color:#EDEDED;*/
+  color: white;
+  text-decoration: none;
+  /*border-bottom:3px solid #EDEDED;*/
+}
+
+#menu ul li a:hover {
+  /*background-color:#00ccff;*/
+  /*color: #00cc33;*/
+
+  border-bottom:3px solid #00ffff ;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  padding: 0px;
+  /*background-color: #2196F3;*/
+
+}
+
+.grid-item {
+  padding: 5px;
+  font-size: 30px;
+  text-align: center;
+  background-color: white;
+
+}
+.item1 {
+
+  background-color: green;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+
+
+}
+.item2 {
+  grid-column: 2 / 5;
+  background-color: green;
+  padding: 50px;
+  font-size: 50px;
+  text-align: right;
+  font-family: Baskerville Old Face;
+}
+
+.item3{
+  grid-column: 5 /9;
+  background-color: green;
+  padding: 20px;
+  font-size: 30px;
+  text-align: right;
+
+}
+
+
+.item8 {
+ grid-column: 1 / 9;
+
+ padding: 0px;
+ font-size: 30px;
+ text-align: center;
+ background-color: #00a2e8;
+ /*background-color: black;*/
+}
+
+.item9{
+  grid-column: 1 / 9;  
+  font-size: 30px;
+  text-align: center;
+}
+
+.input{
+  border-radius: 7px;
+  border-color: green;
+  border-spacing: 5px;
+  border: 5px solid green;
+  color: grey;
+  font-family: Baskerville Old Face;
+}
+.button{
+  border-radius: 7px;
+  border-color: green;
+  border-spacing: 5px;
+  border: 5px solid green;
+  background-color: green;
+  color: white;
+  font-size: 13pt;
+  font-family: Baskerville Old Face;
+}
+.login{
+  border-radius: 7px;
+  border-color: green;
+  border-spacing: 5px;
+  border: 5px solid green;
+  background-color: green;
+  color: white;
+  font-family: Baskerville Old Face;
+  font-size: 35px;
+  text-decoration: none;
+}
+
+.tablet{
+  border-radius: 7px;
+  border-color: green;
+  border: 5px solid green;
+  color: grey;
+  font-family: Baskerville Old Face;
+  border
+}
+
+.img{
+  width: 120px;
+}

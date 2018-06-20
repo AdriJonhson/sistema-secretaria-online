@@ -10,6 +10,8 @@
 	include_once 'controllers/AdminController.php';
 	include_once 'controllers/CoordenadorController.php';
 	include_once 'controllers/ResponsavelController.php';
+	include_once 'controllers/ComentarioController.php';
+	include_once 'controllers/EmpresaController.php';
 	include_once 'connection/Connection.php';
 
 	$acao = filter_input(INPUT_POST, 'acao');
@@ -86,6 +88,26 @@
 		case 'associar-dependente':
 			adicionarDependente();
 		break;
+
+		case 'salvar-comentario':
+			salvarComentario();
+		break;
+
+		case 'excluir-comentario':
+			excluirComentario();
+		break;
+
+		case 'cadastrar-empresa':
+			cadastrarEmpresa();
+		break;
+
+		case 'editar-empresa':
+			updateEmpresa();
+		break;
+
+		case 'apagar-empresa':
+			deleteEmpresa();
+		break;	
 
 		case 'sair':
 			session_destroy();

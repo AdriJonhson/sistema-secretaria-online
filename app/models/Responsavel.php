@@ -123,3 +123,16 @@
 		else
 			return false;
 	}
+
+	function listarDependentes($id_responsavel)
+	{
+		$conn = iniciarConexao();
+		$stmt = $conn->prepare("SELECT * FROM responsaveis_alunos WHERE id_responsavel = ?");
+		$stmt->bindParam(1, $id_responsavel);
+
+		if($stmt->execute() && $stmt->rowCount() > 0){
+			$dependentes = $stmt->fetchAll(PDO::FETCH_OBJ);
+		}
+
+		return $dependentes;
+	}

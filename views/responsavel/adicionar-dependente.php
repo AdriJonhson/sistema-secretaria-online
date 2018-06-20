@@ -29,54 +29,79 @@
 
 ?>
 
-<h1>Associar Aluno</h1>
+<style type="text/css">
+.item9-1{
+	grid-column: 1 / 9;  
+	font-size: 30px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-2{
+	grid-column: 1 / 9;  
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-3{
+	grid-column: 1 / 9;  
+}
+</style>
 
-<h3>Buscar Aluno</h3>
-<form method="POST" action="">
-	<input type="text" name="cpf" placeholder="Digite o CPF do aluno" size="50px">
-	<button type="submit" name="btnProcurar">Procurar</button>
-</form>
+<div class="item9-1">Associar Aluno</div>
 
-<hr>
+<div class="item9-3">
+	<form method="POST" action="">
+		<input type="text" name="cpf" placeholder="Digite o CPF do aluno" size="50px" required>
+		<button type="submit" name="btnProcurar" class="button">Procurar</button>
+	</form>
+</div>
 
-<table border="1" cellspacing="0" width="100%">
-	
-	<tr>
-		<th>Matrícula</th>
-		<th>Nome</th>
-		<th>Curso</th>
-		<th>CPF</th>
-		<th>Associar</th>
-	</tr>
+<p></p>
 
-	<tbody>
-		<?php 
-			if(!empty($alunos)){
-				foreach($alunos as $aluno){
-		?>
+<div class="item9-2">
+	<table border="5" width="100%" class="tablet">
+		
+		<thead>
 			<tr>
-				<td align="center"><?= $aluno['matricula'] ?></td>
-				<td align="center"><?= $aluno['nome'] ?></td>
-				<td align="center"><?= traduzirId($aluno['id_curso']) ?></td>
-				<td align="center"><?= $aluno['cpf'] ?></td>
-				<td align="center">
-					<form method="POST" action="../../app/routes.php">
-						<input type="hidden" name="acao" value="associar-dependente">
-						<input type="hidden" name="id_aluno" value="<?= $aluno['id'] ?>">
-						<input type="hidden" name="id_responsavel" value="<?= $id_responsavel ?>">
-						<button type="submit" onclick="return confirm('Deseja Realemnte associar: <?= $aluno['nome'] ?>?')">Associar</button>
-					</form>
-				</td>
+				<th>Matrícula</th>
+				<th>Nome</th>
+				<th>Curso</th>
+				<th>CPF</th>
+				<th>Associar</th>
 			</tr>
-		<?php } }else{ ?>
+		</thead>
 
-			<tr>
-				<th colspan="5"><?= $msg ?></th>
-			</tr>
+		<tbody>
+			<?php 
+				if(!empty($alunos)){
+					foreach($alunos as $aluno){
+			?>
+				<tr>
+					<td align="center"><?= $aluno['matricula'] ?></td>
+					<td align="center"><?= $aluno['nome'] ?></td>
+					<td align="center"><?= traduzirId($aluno['id_curso']) ?></td>
+					<td align="center"><?= $aluno['cpf'] ?></td>
+					<td align="center">
+						<form method="POST" action="../../app/routes.php">
+							<input type="hidden" name="acao" value="associar-dependente">
+							<input type="hidden" name="id_aluno" value="<?= $aluno['id'] ?>">
+							<input type="hidden" name="id_responsavel" value="<?= $id_responsavel ?>">
+							<button type="submit" onclick="return confirm('Deseja Realemnte associar: <?= $aluno['nome'] ?>?')">Associar</button>
+						</form>
+					</td>
+				</tr>
+			<?php } }else{ ?>
 
-		<?php } ?>
-	</tbody>
+				<tr>
+					<th colspan="5"><?= $msg ?></th>
+				</tr>
 
-</table>
+			<?php } ?>
+		</tbody>
+
+	</table>
+</div>
 
 <?php include_once '../templates/includes/footer.php'; ?>

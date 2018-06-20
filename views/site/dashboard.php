@@ -5,10 +5,10 @@
 	if(!isset($_SESSION['usuario_logado']))	
 		header("Location: ../../index.php");
 
+	if($_SESSION['usuario_logado']['nv_acesso'] == "responsavel"){
+		header("Location: ../responsavel/ver-dependentes.php");
+	}
 ?>
-
-
-
 
 <h1>DashBoard</h1>
 

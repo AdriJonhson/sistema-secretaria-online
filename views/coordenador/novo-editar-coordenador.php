@@ -16,42 +16,63 @@
 
 ?>
 
-<h1><?= isset($coordenador) ? "Editando..." : "Novo Coordenador" ?></h1>
+<style type="text/css">
+.item9-1{
+	grid-column: 1 / 9;  
+	font-size: 30px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-2{
+	grid-column: 1 / 9;  
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+</style>
 
-<form method="POST" action="../../app/routes.php">
-	<label>Nome</label>
-	<input type="text" name="nome" required value="<?= isset($coordenador) ? $coordenador->nome : "" ?>">
-	<br><br>
 
-	<label>CPF</label>
-	<input type="text" name="cpf" class="cpf" required value="<?= isset($coordenador) ? $coordenador->cpf : "" ?>">
-	<br><br>
+<div class="item9-1">
+	<?= isset($coordenador) ? "Editando..." : "Novo Coordenador" ?>
+</div>	
 
-	<label>E-Mail</label>
-	<input type="email" name="email" required value="<?= isset($coordenador) ? $coordenador->email : "" ?>">
-	<br><br>
-
-	<label>Login</label>
-	<input type="text" name="login" required value="<?= isset($coordenador) ? $coordenador->login : "" ?>">
-	<br><br>
-
-	<?php if(!isset($coordenador)){ ?>
-		<label>Senha</label>
-		<input type="password" name="senha" required >
+<div class="item9-2">
+	<form method="POST" action="../../app/routes.php">
+		<label>Nome</label>
+		<input type="text" name="nome" required value="<?= isset($coordenador) ? $coordenador->nome : "" ?>">
 		<br><br>
-	<?php } ?>
 
-	
-	<input type="hidden" name="acao" value="<?= isset($coordenador) ? "editar-coordenador" : "cadastrar-coordenador" ?>">
+		<label>CPF</label>
+		<input type="text" name="cpf" class="cpf" required value="<?= isset($coordenador) ? $coordenador->cpf : "" ?>">
+		<br><br>
 
-	<?php if(isset($coordenador)){ ?>
-		<input type="hidden" name="id" value="<?= $coordenador->id ?>">
-		<input type="hidden" name="email_old" value="<?= $coordenador->email ?>">
-	<?php } ?>
+		<label>E-Mail</label>
+		<input type="email" name="email" required value="<?= isset($coordenador) ? $coordenador->email : "" ?>">
+		<br><br>
 
-	<button><?= isset($coordenador) ? "Salvar Alterações" : "Cadastrar" ?></button>
-</form>
+		<label>Login</label>
+		<input type="text" name="login" required value="<?= isset($coordenador) ? $coordenador->login : "" ?>">
+		<br><br>
 
+		<?php if(!isset($coordenador)){ ?>
+			<label>Senha</label>
+			<input type="password" name="senha" required >
+			<br><br>
+		<?php } ?>
+
+		
+		<input type="hidden" name="acao" value="<?= isset($coordenador) ? "editar-coordenador" : "cadastrar-coordenador" ?>">
+
+		<?php if(isset($coordenador)){ ?>
+			<input type="hidden" name="id" value="<?= $coordenador->id ?>">
+			<input type="hidden" name="email_old" value="<?= $coordenador->email ?>">
+		<?php } ?>
+
+		<button class="button"><?= isset($coordenador) ? "Salvar Alterações" : "Cadastrar" ?></button>
+	</form>
+</div>
 
 <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../assets/js/maskedinput.js"></script>

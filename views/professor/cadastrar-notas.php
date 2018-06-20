@@ -25,8 +25,26 @@
 
 ?>
 
-<h1>Adicionar Nota</h1>
+<style type="text/css">
+.item9-1{
+	grid-column: 1 / 9;  
+	font-size: 30px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-2{
+	grid-column: 1 / 9;  
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+</style>
 
+<div class="item9-1">Adicionar Nota</div>
+<p></p>
+<div class="item9-2">
 <form method="POST" action="../../app/routes.php">
 	<label><b>Matéria</b></label>
 	<input type="text" value="<?= $_SESSION['usuario_logado']['dados']->materia ?>" readonly>
@@ -58,17 +76,16 @@
 	<input type="hidden" name="acao" value="cadastrar-nota">	
 	<input type="hidden" name="id_aluno" value="<?= $aluno->id ?>">
 	<input type="hidden" name="id_professor" value="<?= $id_professor ?>">
-	<button type="submit" <?= ($bloquear_cadastro) ? "disabled" : "" ?>>Concluir</button>
+	<button type="submit" <?= ($bloquear_cadastro) ? "disabled" : "" ?> class="button">Concluir</button>
 
 	<?php if($bloquear_cadastro){ ?>
 		<p></p>
 		<label><i><strong>Esse aluno já possui suas médias preenchidas</strong></i></label>
 	<?php } ?>
 </form>
+</div>
 
 <script>
-
-	
 
 	function calcularMedia(){
 		var nota_um = document.getElementById("nota1").value;

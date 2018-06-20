@@ -8,7 +8,7 @@
 
 	include_once '../templates/includes/header.php'; 
 
-	$permissoes = ['admin', 'coordenador', 'aluno'];
+	$permissoes = ['admin', 'coordenador', 'aluno', 'responsavel'];
 
 	verificarAcesso($permissoes);
 
@@ -19,46 +19,63 @@
 		$id_aluno = filter_input(INPUT_GET, 'id');
 	}
 
-	$notas = gerar_boletim($id_aluno);
+	@$notas = gerar_boletim($id_aluno);
 
 ?>
 
-<h1>Boletim</h1>
+<style type="text/css">
+.item9-1{
+	grid-column: 1 / 9;  
+	font-size: 30px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-2{
+	grid-column: 1 / 9;  
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+</style>
 
+<div class="item9-1">Boletim</div>
 
-<table border="1" cellspacing="0" width="100%">
-	<thead>
-		<tr>
-			<th>Matéria</th>
-			<th>Média Primeiro Semestre</th>
-			<th>Média Segundo Semestre</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		
-		<?php 
-			if(!empty($notas)){
-				foreach($notas as $nota){ 
-		?>
+<div class="item9-2">
+	<table border="5" width="100%" class="tablet">
+		<thead>
 			<tr>
-				<th><?= buscar($nota->id_professor)->materia ?></th>
-				<th><?= $nota->media_primeiro_semestre ?></th>
-				<th><?= $nota->media_segundo_semestre != null ? $nota->media_segundo_semestre : "-" ?></th>
-			</tr>	
-		<?php } }else{ ?>
-			<tr>
-				<th colspan="3">Nenhum Nota Adicionada</th>
+				<th>Matéria</th>
+				<th>Média Primeiro Semestre</th>
+				<th>Média Segundo Semestre</th>
 			</tr>
-		<?php } ?>
-	</tbody>
-</table>
+		</thead>
 
+		<tbody>
+			
+			<?php 
+				if(!empty($notas)){
+					foreach($notas as $nota){ 
+			?>
+				<tr>
+					<th><?= buscar($nota->id_professor)->materia ?></th>
+					<th><?= $nota->media_primeiro_semestre ?></th>
+					<th><?= $nota->media_segundo_semestre != null ? $nota->media_segundo_semestre : "-" ?></th>
+				</tr>	
+			<?php } }else{ ?>
+				<tr>
+					<th colspan="3">Nenhum Nota Adicionada</th>
+				</tr>
+			<?php } ?>
+		</tbody>
 
-
-
-
-
-
+		<tfoot>
+			<tr>
+				<th colspan="3"><a href="../site/dashboard.php">Voltar</a></th>
+			</tr>
+		</tfoot>
+	</table>
+</div>
 
 <?php include_once '../templates/includes/footer.php'; ?>

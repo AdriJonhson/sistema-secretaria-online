@@ -21,157 +21,177 @@ if(isset($id_aluno)){
 
 ?>
 
-<h1><?= isset($id_aluno) ? "Editando" : "Novo Aluno"  ?></h1>
+<style type="text/css">
+.item9-1{
+	grid-column: 1 / 9;  
+	font-size: 30px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-2{
+	grid-column: 1 / 9;  
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+</style>
 
-<form method="POST" action="../../app/routes.php">
+<div class="item9-1">
+	<?= isset($id_aluno) ? "Editando" : "Novo Aluno"  ?>
+</div>
 
-	<fieldset>
-		<legend><b>Dados Pessoais</b></legend>
-		<br>
-		<label>Nome Completo</label>
-		<input type="text" name="nome" placeholder="Nome do Aluno" value="<?= isset($id_aluno) ? $aluno->nome : '' ?>" required /> <br><br>
+<div class="item9-2">
+	<form method="POST" action="../../app/routes.php">
 
-		<label>RG</label>
-		<input type="text" name="rg" id="rg" placeholder="RG" value="<?= isset($id_aluno) ? $aluno->rg : '' ?>"/> <br><br>
+		<fieldset>
+			<legend><b>Dados Pessoais</b></legend>
+			<br>
+			<label>Nome Completo</label>
+			<input class="input" type="text" name="nome" placeholder="Nome do Aluno" value="<?= isset($id_aluno) ? $aluno->nome : '' ?>" required /> <br><br>
 
-		<label>CPF</label>
-		<input type="text" name="cpf" id="cpf" placeholder="CPF" value="<?= isset($id_aluno) ? $aluno->cpf : '' ?>"/> <br><br>
+			<label>RG</label>
+			<input class="input" type="text" name="rg" id="rg" placeholder="RG" value="<?= isset($id_aluno) ? $aluno->rg : '' ?>"/> <br><br>
 
-		<label>NIS</label>
-		<input type="text" name="nis" placeholder="NIS" value="<?= isset($id_aluno) ? $aluno->nis : '' ?>"/> <br><br>
+			<label>CPF</label>
+			<input class="input" type="text" name="cpf" id="cpf" placeholder="CPF" value="<?= isset($id_aluno) ? $aluno->cpf : '' ?>"/> <br><br>
 
-		<label>Data de Nascimento</label>
-		<input type="date" name="nascimento" placeholder="Data de Nascimento" required value="<?= isset($id_aluno) ? $aluno->data_nascimento : '' ?>"/> <br><br>
+			<label>NIS</label>
+			<input class="input" type="text" name="nis" placeholder="NIS" value="<?= isset($id_aluno) ? $aluno->nis : '' ?>"/> <br><br>
 
-		<label>Naturalidade</label>
-		<input type="text" name="naturalidade" placeholder="Naturalidade" required value="<?= isset($id_aluno) ? $aluno->naturalidade : '' ?>"/> <br><br>
+			<label>Data de Nascimento</label>
+			<input class="input" type="date" name="nascimento" placeholder="Data de Nascimento" required value="<?= isset($id_aluno) ? $aluno->data_nascimento : '' ?>"/> <br><br>
 
-		<label>Telefone</label>
-		<input type="text" name="telefone" placeholder="Telefone Fixo" value="<?= isset($id_aluno) ? $aluno->telefone : '' ?>"/> <br><br>
+			<label>Naturalidade</label>
+			<input class="input" type="text" name="naturalidade" placeholder="Naturalidade" required value="<?= isset($id_aluno) ? $aluno->naturalidade : '' ?>"/> <br><br>
 
-
-		<label>Celular</label>
-		<input type="text" name="celular" placeholder="Celular" value="<?= isset($id_aluno) ? $aluno->celular : '' ?>"/> <br><br>
-	</fieldset>
-
-	<fieldset>
-		<legend><b>Endereço</b></legend>
-		<br>
-		<label>CEP</label>
-		<input type="text" name="cep" id="cep" placeholder="CEP" required onblur="pesquisacep(this.value);" value="<?= isset($id_aluno) ? $aluno->cep : '' ?>"> <br><br>
-
-		<label>Rua</label>
-		<input type="text" name="rua" id="rua" readonly>
-
-		<label>Bairro</label>
-		<input type="text" name="bairro" id="bairro" readonly>
-
-		<label>Cidade</label>
-		<input type="text" name="cidade" id="cidade" readonly>
-
-		<label>Estado</label>
-		<input type="text" name="estado" id="uf" readonly> <br><br>
-
-		<label>Complemento</label>
-		<input type="text" name="complemento" value="<?= isset($id_aluno) ? $aluno->complemento_endereco : '' ?>"> <br><br>
-	</fieldset>
-
-	<fieldset>
-		<legend><b>Complementos</b></legend>
-
-		<label>Medicamento</label>
-		<input type="radio" name="medicamento" value="Sim" onclick="habilitarCampo()"
-		<?= isset($id_aluno) && $aluno->medicamento == "Sim" ? "checked" : '' ?>>Sim 
-
-		<input type="radio" name="medicamento" value="Nao" onclick="desabilitarCampo()"
-		<?= isset($id_aluno) && $aluno->medicamento == "Nao" ? "checked" : '' ?>>Não
-
-		<br><br>
-
-		<label>Opção de Medicamento</label>
-		<input type="text" name="opc_medicamento" id="opc_medic" placeholder="Opção de Medicamento" value="<?= isset($id_aluno) ? $aluno->opcao_medicamento : '' ?>"> <br><br>
-
-		<label>Alguma Observação</label>
-		<textarea name="observacao" placeholder="Obeservações">
-			<?= isset($id_aluno) ? $aluno->comentario : '' ?>
-		</textarea>
-
-	</fieldset>
+			<label>Telefone</label>
+			<input class="input" type="text" name="telefone" placeholder="Telefone Fixo" value="<?= isset($id_aluno) ? $aluno->telefone : '' ?>"/> <br><br>
 
 
-	<fieldset>
-		<legend><b>Dados Escolares</b></legend>
-		<br>
+			<label>Celular</label>
+			<input class="input" type="text" name="celular" placeholder="Celular" value="<?= isset($id_aluno) ? $aluno->celular : '' ?>"/> <br><br>
+		</fieldset>
 
-		<label>Escola de Origem</label>
-		<input type="text" name="origem" required placeholder="Escola de Origem" value="<?= isset($id_aluno) ? $aluno->escola_origem : '' ?>"> <br><br>
+		<fieldset>
+			<legend><b>Endereço</b></legend>
+			<br>
+			<label>CEP</label>
+			<input class="input" type="text" name="cep" id="cep" placeholder="CEP" required onblur="pesquisacep(this.value);" value="<?= isset($id_aluno) ? $aluno->cep : '' ?>"> <br><br>
 
-		<label>Matrícula</label>
-		<input type="text" name="matricula" id="matricula" value="<?= isset($id_aluno) ? $aluno->matricula : '' ?>" readonly> <br><br>
+			<label>Rua</label>
+			<input class="input" type="text" name="rua" id="rua" readonly>
 
-		<label>Curso</label>
-		<select name="curso" required>
-			<option value="">Selecione o Curso</option>
-	 		<?php 
-            	foreach($cursos as $curso){ 
+			<label>Bairro</label>
+			<input class="input" type="text" name="bairro" id="bairro" readonly>
 
-                	if($curso['id'] == $aluno->id_curso){
-        	?>
-            			<option value="<?= $curso['id'] ?>" selected><?= $curso['nome'] ?></option>
+			<label>Cidade</label>
+			<input class="input" type="text" name="cidade" id="cidade" readonly>
 
-        			<?php }else{ ?>
+			<label>Estado</label>
+			<input class="input" type="text" name="estado" id="uf" readonly> <br><br>
 
-            			<option value="<?= $curso['id'] ?>"><?= $curso['nome'] ?></option>
-        
-        	<?php } } ?>
-		</select>
+			<label>Complemento</label>
+			<input class="input" type="text" name="complemento" value="<?= isset($id_aluno) ? $aluno->complemento_endereco : '' ?>"> <br><br>
+		</fieldset>
 
-		<label>Turno</label>
-		<select name="turno" disabled>
-			<option value="Integral">Integral</option>
-			<option value="Manhã">Manhã</option>
-			<option value="Tarde">Tarde</option>
-			<option value="Integral">Integral</option>
-		</select>
+		<fieldset>
+			<legend><b>Complementos</b></legend>
 
-	</fieldset>
+			<label>Medicamento</label>
+			<input class="input" type="radio" name="medicamento" value="Sim" onclick="habilitarCampo()"
+			<?= isset($id_aluno) && $aluno->medicamento == "Sim" ? "checked" : '' ?>>Sim 
 
-	<fieldset>
-		<legend><b>Dados para Acessar Boletim Online</b></legend>
-		<br>
+			<input class="input" type="radio" name="medicamento" value="Nao" onclick="desabilitarCampo()"
+			<?= isset($id_aluno) && $aluno->medicamento == "Nao" ? "checked" : '' ?>>Não
 
-		<label>E-Mail</label>
-		<input type="email" name="email" placeholder="E-Mail" value="<?= isset($id_aluno) ? $aluno->email : '' ?>"> <br><br>
+			<br><br>
 
-		<label>Login</label>
-		<input type="text" name="login" placeholder="Login" value="<?= isset($id_aluno) ? $aluno->login : '' ?>"> <br><br>
+			<label>Opção de Medicamento</label>
+			<input class="input" type="text" name="opc_medicamento" id="opc_medic" placeholder="Opção de Medicamento" value="<?= isset($id_aluno) ? $aluno->opcao_medicamento : '' ?>"> <br><br>
+
+			<label>Alguma Observação</label>
+			<textarea name="observacao" placeholder="Obeservações">
+				<?= isset($id_aluno) ? $aluno->comentario : '' ?>
+			</textarea>
+
+		</fieldset>
 
 
-		<?php 
-			if(!isset($id_aluno)){
-		?>
-			<label>Senha</label>
-			<input type="password" name="senha" placeholder="Senha" value="<?= isset($id_aluno) ? $aluno->senha : '' ?>">
-		<?php } ?>
-	</fieldset>
+		<fieldset>
+			<legend><b>Dados Escolares</b></legend>
+			<br>
 
-	<?php 
-		if(isset($id_aluno)){
-	?>
-		<input type="hidden" name="id_aluno" value="<?= $id_aluno ?>">
-		<input type="hidden" name="email_old" value="<?= $aluno->email ?>">
-	<?php } ?>
+			<label>Escola de Origem</label>
+			<input class="input" type="text" name="origem" required placeholder="Escola de Origem" value="<?= isset($id_aluno) ? $aluno->escola_origem : '' ?>"> <br><br>
 
-	<p></p>
+			<label>Matrícula</label>
+			<input class="input" type="text" name="matricula" id="matricula" value="<?= isset($id_aluno) ? $aluno->matricula : '' ?>" readonly> <br><br>
 
-	<input type="hidden" name="acao" id="acao" value="<?= isset($id_aluno) ? 'editar-aluno' : 'cadastrar-aluno' ?>">
-	<button type="submit"><?= isset($id_aluno) ? "Salvar Alterações" : "Concluir" ?></button>
+			<label>Curso</label>
+			<select name="curso" required>
+				<option value="">Selecione o Curso</option>
+				<?php 
+				foreach($cursos as $curso){ 
 
-</form>
+					if($curso['id'] == $aluno->id_curso){
+						?>
+						<option value="<?= $curso['id'] ?>" selected><?= $curso['nome'] ?></option>
 
+					<?php }else{ ?>
+
+						<option value="<?= $curso['id'] ?>"><?= $curso['nome'] ?></option>
+
+					<?php } } ?>
+				</select>
+
+				<label>Turno</label>
+				<select name="turno" disabled>
+					<option value="Integral">Integral</option>
+					<option value="Manhã">Manhã</option>
+					<option value="Tarde">Tarde</option>
+					<option value="Integral">Integral</option>
+				</select>
+
+			</fieldset>
+
+			<fieldset>
+				<legend><b>Dados para Acessar Boletim Online</b></legend>
+				<br>
+
+				<label>E-Mail</label>
+				<input class="input" type="email" name="email" placeholder="E-Mail" value="<?= isset($id_aluno) ? $aluno->email : '' ?>"> <br><br>
+
+				<label>Login</label>
+				<input class="input" type="text" name="login" placeholder="Login" value="<?= isset($id_aluno) ? $aluno->login : '' ?>"> <br><br>
+
+
+				<?php 
+				if(!isset($id_aluno)){
+					?>
+					<label>Senha</label>
+					<input class="input" type="password" name="senha" placeholder="Senha" value="<?= isset($id_aluno) ? $aluno->senha : '' ?>">
+				<?php } ?>
+			</fieldset>
+
+			<?php 
+			if(isset($id_aluno)){
+				?>
+				<input type="hidden" name="id_aluno" value="<?= $id_aluno ?>">
+				<input type="hidden" name="email_old" value="<?= $aluno->email ?>">
+			<?php } ?>
+
+			<p></p>
+
+			<input type="hidden" name="acao" id="acao" value="<?= isset($id_aluno) ? 'editar-aluno' : 'cadastrar-aluno' ?>">
+			<button type="submit" class="button"><?= isset($id_aluno) ? "Salvar Alterações" : "Concluir" ?></button>
+
+		</form>
+	</div>
 <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../assets/js/viacep.js"></script>
-<script type="text/javascript" src="../assets/js/maskedinput.js"></script>
+<script type="text/javascript" src="../assets/js/maskedinput class="input".js"></script>
 
 <script>
 	

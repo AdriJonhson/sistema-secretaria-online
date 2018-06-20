@@ -13,58 +13,77 @@
     $atividades = listarAtividadesAtivas($_SESSION['usuario_logado']['dados']->id);
         
 ?>
+<style type="text/css">
+.item9-1{
+    grid-column: 1 / 9;  
+    font-size: 30px;
+    text-align: center;
+    color: grey;
+    font-family: Baskerville Old Face;
+}
+.item9-2{
+    grid-column: 1 / 9;  
+    font-size: 20px;
+    text-align: center;
+    color: grey;
+    font-family: Baskerville Old Face;
+}
+</style>
 
-<h1>Atividades Em Andamento</h1>
-
-<a href="diario-atividades.php">Ver Diário</a>
+<div class="item9-1">
+    Atividades Em Andamento
+</div>
 
 <p></p>
 
-<table border="1" cellspacing="0" width="100%">
+<div class="item9-2">
+    <table border="5" width="100%" class="tablet">
 
-    <thead>
-        <tr>
-            <th>Curso</th>
-            <th>Data da Entrega</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th>Curso</th>
+                <th>Data da Entrega</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <?php 
-            if(!empty($atividades)){
-                foreach($atividades as $atividade){ 
-        ?>
-            
-                <tr>
-                    <td align="center"><?= traduzirId($atividade['id_curso']) ?></td>
-                    <td align="center"><?= tratarData($atividade['data_entrega']) ?></td>
-                    <td align="center"><a href="#" onclick="encerrarAtividade()">Encerrar</a> | <a href="ver-cadastrar-atividade.php?id=<?= $atividade['id'] ?>">Ver Mais</a></td>
-                </tr>
+        <tbody>
+            <?php 
+                if(!empty($atividades)){
+                    foreach($atividades as $atividade){ 
+            ?>
+                
+                    <tr>
+                        <td align="center"><?= traduzirId($atividade['id_curso']) ?></td>
+                        <td align="center"><?= tratarData($atividade['data_entrega']) ?></td>
+                        <td align="center"><a href="#" onclick="encerrarAtividade()">Encerrar</a> | <a href="ver-cadastrar-atividade.php?id=<?= $atividade['id'] ?>">Ver Mais</a></td>
+                    </tr>
 
-                <form method="POST" action="../../app/routes.php" id="formEncerrar">
-                    <input type="hidden" name="acao" value="encerrar-atividade">
-                    <input type="hidden" name="id" value="<?= $atividade['id'] ?>">
-                </form>
+                    <form method="POST" action="../../app/routes.php" id="formEncerrar">
+                        <input type="hidden" name="acao" value="encerrar-atividade">
+                        <input type="hidden" name="id" value="<?= $atividade['id'] ?>">
+                    </form>
 
-        <?php } }else{  ?>
-            
-                <tr>
-                    <th colspan="3" align="center">Nenhuma Atividade Cadastrada</th>
-                </tr>
+            <?php } }else{  ?>
+                
+                    <tr>
+                        <th colspan="3" align="center">Nenhuma Atividade Cadastrada</th>
+                    </tr>
 
-         <?php } ?>   
-    </tbody>
+             <?php } ?>   
+        </tbody>
 
-    <tfoot>
-        <tr>
-            <td align="center" colspan="3"><a href="ver-cadastrar-atividade.php">Lançar Atividade</a></td>
-        </tr>
-    </tfoot>
+        <tfoot>
+            <tr>
+                <td align="center" colspan="3">
+                    <a href="ver-cadastrar-atividade.php">Lançar Atividade</a> | 
+                    <a href="diario-atividades.php">Ver Diário</a>
+                </td>
+            </tr>
+        </tfoot>
 
-
-</table>
-
+    </table>
+</div>
 
 <script type="text/javascript">
     

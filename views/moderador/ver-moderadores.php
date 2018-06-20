@@ -12,39 +12,56 @@
     $admins = listarAdmins();
 ?>
 
-<h1>Administradores</h1>
+<style type="text/css">
+.item9-1{
+	grid-column: 1 / 9;  
+	font-size: 30px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+.item9-2{
+	grid-column: 1 / 9;  
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	font-family: Baskerville Old Face;
+}
+</style>
 
-<table border="1" cellspacing="0" width="100%">
-	
-	<thead>
-		<tr>
-			<th>Nome</th>
-			<th>E-Mail</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<?php if(!empty($admins)){
-			foreach($admins as $admin){
-		?>
+<div class="item9-1">Administradores</div>
+<div class="item9-2">
+	<table border="5" width="100%" class="tablet">
+		
+		<thead>
 			<tr>
-				<th><?= $admin->nome ?></th>
-				<th><?= $admin->email ?></th>
+				<th>Nome</th>
+				<th>E-Mail</th>
 			</tr>
+		</thead>
 
-		<?php } }else{ ?>
-			<tr>
-				<th colspan="3">Nenhum Administrador Cadastrado</th>
-			</tr>
-		<?php } ?>
-	</tbody>
+		<tbody>
+			<?php if(!empty($admins)){
+				foreach($admins as $admin){
+					?>
+					<tr>
+						<th><?= $admin->nome ?></th>
+						<th><?= $admin->email ?></th>
+					</tr>
 
-	<tfoot>
-		<tr>
-			<th colspan="2"><a href="novo-moderador.php">Novo Administrador</a></th>
-		</tr>
-	</tfoot>
+				<?php } }else{ ?>
+					<tr>
+						<th colspan="3">Nenhum Administrador Cadastrado</th>
+					</tr>
+				<?php } ?>
+			</tbody>
 
-</table>
+			<tfoot>
+				<tr>
+					<th colspan="2"><a href="novo-moderador.php">Novo Administrador</a></th>
+				</tr>
+			</tfoot>
 
+		</table>
+	</div>
 <?php include_once '../templates/includes/footer.php'; ?>

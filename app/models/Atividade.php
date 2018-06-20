@@ -41,6 +41,20 @@
         return $atividades;
     }
 
+    function listarAtividadesCurso($id_curso)
+    {
+        $conn = iniciarConexao();
+        $stmt = $conn->prepare("SELECT * FROM atividades WHERE id_curso = ?");
+        $stmt->bindParam(1, $id_curso);
+
+
+        if($stmt->execute()){
+            $atividades = $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        return $atividades;
+    }
+
     function buscarAtividade($id_atividade)
     {
 
