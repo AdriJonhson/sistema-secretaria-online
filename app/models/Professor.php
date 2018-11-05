@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function verificarLoginProfessor($email, $senha)
 	{
@@ -10,13 +10,13 @@
 		if($stmt->execute() && $stmt->rowCount() > 0){
 			$row = $stmt->fetch(PDO::FETCH_OBJ);
 
-			if(crypt($senha, $row->senha) == $row->senha){
+			if(password_verify($senha, $row->senha) == $row->senha){
 				$_SESSION['usuario_logado']['nv_acesso'] = "professor";
 				$_SESSION['usuario_logado']['dados'] = $row;
 				return true;
 			}
 		}
-		
+
 	}
 
 	function verificarEmailProfessor($email)
@@ -35,10 +35,10 @@
 	{
 
 		//Criptografando a senha
-		$senha = crypt($senha);
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		$conn = iniciarConexao();
-		
+
 		$stmt = $conn->prepare("INSERT INTO professores(nome, materia, login, email, senha, cpf) VALUES(?, ?, ?, ?, ?, ?)");
 
 		$stmt->bindParam(1, $nome);
@@ -59,10 +59,10 @@
 	{
 
 		//Criptografando a senha
-		$senha = crypt($senha);
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		$conn = iniciarConexao();
-		
+
 		$stmt = $conn->prepare("UPDATE professores SET nome = ?, materia = ?, login = ?, email = ?, senha = ?, cpf = ? WHERE id = ?");
 
 		$stmt->bindParam(1, $nome);
