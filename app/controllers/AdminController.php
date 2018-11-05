@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	include_once 'Controller.php';
 	include_once 'models/Admin.php';
@@ -9,7 +9,7 @@
 		$email = filter_input(INPUT_POST, 'email');
 		$login = filter_input(INPUT_POST, 'login');
 		$senha = filter_input(INPUT_POST, 'senha');
-		$senha = crypt($senha);
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		if(verificarEmailAdmin($email)){
 

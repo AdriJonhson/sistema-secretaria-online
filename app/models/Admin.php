@@ -51,8 +51,6 @@
 		$conn = iniciarConexao();
 		$stmt = $conn->prepare("INSERT INTO administradores(nome, email, login, senha) VALUES(?, ?, ?, ?)");
 
-		$senha = password_hash($senha, PASSWORD_BCRYPT);
-
 		$stmt->bindParam(1, $nome);
 		$stmt->bindParam(2, $email);
 		$stmt->bindParam(3, $login);
