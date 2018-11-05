@@ -46,8 +46,6 @@
 		$conn = iniciarConexao();
 		$stmt = $conn->prepare("INSERT alunos(id_curso,nome,matricula,num_chamada,data_nascimento,naturalidade,rg,cpf,nis,cep,complemento_endereco,turno,data_cadastro,escola_origem,opcao_medicamento,medicamento,telefone,celular,comentario,login,email,senha) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-		$senha = password_hash($senha, PASSWORD_BCRYPT);
-
 		$stmt->bindParam(1, $id_curso);
 		$stmt->bindParam(2, $nome);
 		$stmt->bindParam(3, $matricula);

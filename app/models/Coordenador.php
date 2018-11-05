@@ -48,7 +48,6 @@
 	{
 		$conn = iniciarConexao();
 		$stmt = $conn->prepare("INSERT INTO coordenadores(nome, login, email, senha, cpf) VALUES(?,?,?,?,?)");
-		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		$stmt->bindParam(1, $nome);
 		$stmt->bindParam(2, $login);

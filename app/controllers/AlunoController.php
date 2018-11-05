@@ -1,5 +1,5 @@
-<?php 
-	
+<?php
+
 	include_once 'models/Aluno.php';
 	include_once 'Controller.php';
 
@@ -28,7 +28,7 @@
 		$turno  = filter_input(INPUT_POST, 'turno');
 		$email = filter_input(INPUT_POST, 'email');
 		$login = filter_input(INPUT_POST, 'login');
-		$senha = crypt(filter_input(INPUT_POST, 'senha'));
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		$num = gerarNumeChamada($curso);
 		$turno = "Integral";
