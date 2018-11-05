@@ -10,7 +10,7 @@
 		if($stmt->execute() && $stmt->rowCount() > 0){
 			$row = $stmt->fetch(PDO::FETCH_OBJ);
 
-			if(password_verify($senha, $row->senha) == $row->senha){
+			if(password_verify($senha, $row->senha)){
 				$_SESSION['usuario_logado']['nv_acesso'] = "professor";
 				$_SESSION['usuario_logado']['dados'] = $row;
 				return true;
@@ -40,6 +40,8 @@
 		$conn = iniciarConexao();
 
 		$stmt = $conn->prepare("INSERT INTO professores(nome, materia, login, email, senha, cpf) VALUES(?, ?, ?, ?, ?, ?)");
+
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		$stmt->bindParam(1, $nome);
 		$stmt->bindParam(2, $materia);

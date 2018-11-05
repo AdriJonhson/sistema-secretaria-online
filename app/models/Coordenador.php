@@ -10,7 +10,7 @@
 		if($stmt->execute() && $stmt->rowCount() > 0){
 			$row = $stmt->fetch(PDO::FETCH_OBJ);
 
-			if(password_verify($senha, $row->senha) == $row->senha){
+			if(password_verify($senha, $row->senha)){
 				$_SESSION['usuario_logado']['nv_acesso'] = "coordenador";
 				$_SESSION['usuario_logado']['dados'] = $row;
 				return true;
