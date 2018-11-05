@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	include_once 'models/Coordenador.php';
 	include_once 'Controller.php';
@@ -10,7 +10,7 @@
 		$cpf = filter_input(INPUT_POST, 'cpf');
 		$login = filter_input(INPUT_POST, 'login');
 		$senha = filter_input(INPUT_POST, 'senha');
-		$senha = crypt($senha);
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		if(verificarEmail($email)){
 			$_SESSION['msg_erro'] = "Esse E-Mail já está em uso!";

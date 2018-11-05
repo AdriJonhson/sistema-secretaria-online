@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function verificarLoginAluno($email, $senha)
 	{
@@ -9,13 +9,13 @@
 		if($stmt->execute() && $stmt->rowCount() > 0){
 			$row = $stmt->fetch(PDO::FETCH_OBJ);
 
-			if(crypt($senha, $row->senha) == $row->senha){
+			if(password_verify($senha, $row->senha)){
 				$_SESSION['usuario_logado']['nv_acesso'] = "aluno";
 				$_SESSION['usuario_logado']['dados'] = $row;
 				return true;
 			}
 		}
-		
+
 	}
 
 	function verificarEmailAluno($email)
@@ -38,7 +38,7 @@
 		}
 
 		return $alunos;
-	}	
+	}
 
 	function cadastrar_aluno($id_curso, $nome, $matricula, $num_chamada, $data_nascimento, $naturalidade, $rg, $cpf, $nis, $cep, $complemento, $turno, $data_cadastro, $escola_origem, $opcao_medicamento, $medicamento, $telefone, $celular, $comentario, $login, $email, $senha)
 	{
@@ -96,6 +96,8 @@
 		$conn = iniciarConexao();
 
 		$stmt = $conn->prepare("UPDATE alunos SET nome = ?, id_curso = ?, matricula = ?, num_chamada = ?, data_nascimento = ?, naturalidade = ?, rg = ?, cpf = ?, nis = ?, cep = ?, complemento_endereco = ?, turno = ?, escola_origem = ?, opcao_medicamento = ?, medicamento = ?, telefone = ?, celular = ?, comentario = ?, login = ?, email = ?, senha = ? WHERE id = ?");
+
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
 
 		$stmt->bindParam(1, $nome);
 		$stmt->bindParam(2, $id_curso);

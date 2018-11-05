@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function verificarLoginResponsavel($email, $senha)
 	{
@@ -10,13 +10,13 @@
 		if($stmt->execute() && $stmt->rowCount() > 0){
 			$row = $stmt->fetch(PDO::FETCH_OBJ);
 
-			if(crypt($senha, $row->senha) == $row->senha){
+			if(password_verify($senha, $row->senha)){
 				$_SESSION['usuario_logado']['nv_acesso'] = "responsavel";
 				$_SESSION['usuario_logado']['dados'] = $row;
 				return true;
 			}
 		}
-		
+
 	}
 
 	function verificarEmailResponsavel($email)
@@ -48,6 +48,8 @@
 		$conn = iniciarConexao();
 		$stmt = $conn->prepare("INSERT INTO responsaveis(nome_pai, cpf_pai, rg_pai, nome_mae, cpf_mae, rg_mae, email, login, senha) VALUES(?,?,?,?,?,?,?,?,?)");
 
+		$senha = password_hash($senha, PASSWORD_BCRYPT);
+
 		$stmt->bindParam(1, $nome_pai);
 		$stmt->bindParam(2, $cpf_pai);
 		$stmt->bindParam(3, $rg_pai);
@@ -61,7 +63,7 @@
 		if($stmt->execute())
 			return true;
 		else
-			return false;	
+			return false;
 	}
 
 	function editar_responsavel($nome_pai, $cpf_pai, $rg_pai, $nome_mae, $cpf_mae, $rg_mae, $email, $login, $id)
@@ -83,7 +85,7 @@
 			return true;
 		else
 			exibirErro($stmt);
-			//return false;	
+			//return false;
 	}
 
 	function excluir_responsavel($id)
@@ -95,7 +97,7 @@
 		if($stmt->execute())
 			return true;
 		else
-			return false;	
+			return false;
 	}
 
 	function buscarResponsavel($id)
